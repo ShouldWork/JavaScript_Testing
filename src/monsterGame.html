@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Monster Function Game</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <style>
+        body{font-family: 'Slabo 27px', serif; background-color: #494949;}
+        #container{width: 100%; height:auto;}
+        .card{ width: 180px; height: 220px; float:left; margin-left: 15px; margin-top: 10px; border-radius: 3px; cursor: pointer; background-image: url(images/card.png); font-size: 18px;}
+        #gamecontainer{background-image: url('https://www.uxcobra.com/js/monstermunch/images/mbackground.jpg'); background-repeat: no-repeat;width: 600px; height: 600px; margin: 50px auto; overflow: hidden; clear:both; border-radius: 5px;position:relative;}
+        h3{text-align:center; font-size: 30px; margin-top: 40px;}
+        span{display:block; text-align: center; padding-top: 80px; }
+        h5{margin-top: 10px; text-align:center; margin-bottom: 0;}
+        h4{text-align: center; margin-top: 5px;}
+        #foodcontainer{position:absolute; right: 70px; bottom: 190px; width: 150px; height: 150px; color:#FFFFFF; text-align: center; font-size: 22px;}
+        #foodbox{padding-top: 40px;}
+        #commentbox{text-align:center; color: #FFFFFF;}
+        #buttoncontainer{position:absolute; right: 50px; bottom: 20px; width: 180px; height: 150px; color:#FFFFFF; text-align: center; padding-top: 50px;}
+        #buttoncontainer a{color: #FFFFFF; padding: 10px; display:block; text-align: center; width: 60px; float:left; margin-left: 5px; text-decoration: none; border-radius: 5px; }
+        #commentcontainer{position:absolute; bottom: 90px; left: 95px; border-radius: 5px; height: 45px; width: 150px;}
+        .redbtn{ background-color: #C05A5C;}
+        .greenbtn{ background-color: #81B860;}
+        #score{color: #ffffff;}
+
+    </style>
+</head>
+
+<body onload="rungame()">
+
+
+<div id="container">
+    <div id="gamecontainer">
+
+        <div id="score"></div>
+        <div id="foodcontainer"><img id="foodbox" src="../js/carrot.jpg"></img></div>
+        <div id="buttoncontainer"><a class="greenbtn" href="javascript: eatit()">Eat it</a><a class="redbtn" href="javascript: trashit()">Trash it</a></div>
+        <div id="commentcontainer"><p id="commentbox"></p></div>
+
+    </div>
+</div>
+
+
+</body>
+<script
+        src="https://code.jquery.com/jquery-2.2.3.js"
+        integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
+        crossorigin="anonymous"></script>
+<script src="../js/monsterGame.js"></script>
+</html>
+                    

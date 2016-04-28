@@ -1,0 +1,75 @@
+.page-wrapper {
+   padding: 0;
+   margin: 0;
+}
+.content-wrapper {
+    position: fixed;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.60);
+}
+.main-area {
+    position: fixed;
+    left: 17%;
+    width: 85%;
+    background-color: transparent;
+}
+.main-area h1{
+    color: red;
+    font-size: 400%;
+}
+.aside-right {
+    position: fixed;
+    right: 0;
+    width: 15%;
+    height: 100%;
+    padding: 20px;
+    margin:0;
+    background-color: rgb(255,255,255);
+}
+.aside-left {
+    position: fixed;
+    left: 0;
+    width: 15%;
+    height: 100%;
+    padding: 20px;
+    margin: 0;
+    background-color: rgba(0,0,0,0.60);
+}
+
+.projects_area {
+    height: 500px;
+    width: 85%;
+    background-color: rgba(255,255,255,0.70);
+}
+
+.projects_area #programmingLanguage {
+    height:100px;
+    width: 100%;
+    background-color: rgba(50,50,0,0.60);
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+}
+.projects_area h1 {
+    font-size: 200%;
+    padding: 15px;
+    text-align: center;
+    color: inherit;
+}
+.projects_area #programmingLanguage:hover {
+    height:auto;
+}
+
+.lang {
+    color: ghostWhite;
+    padding: 15px;
+    font-size: 80%;
+    border: inset white 2px;
+}
+
+.skills_wrapper {
+    font-size: 200%;
+    background-color: rgba(125,50,0,0.60);
+    height: 100px;
+}
