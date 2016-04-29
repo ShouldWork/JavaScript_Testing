@@ -26,6 +26,8 @@
     height: 100%;
     padding: 20px;
     margin:0;
+    top:0;
+    bottom:0;
     background-color: rgb(255,255,255);
 }
 .aside-left {
@@ -39,14 +41,18 @@
 }
 
 .projects_area {
-    height: 500px;
-    width: 85%;
+    height: 1500px;
+    width: 92%;
     background-color: rgba(255,255,255,0.70);
+
+}
+.projects_area:hover #programmingLanguage {
+    height: auto;
 }
 
 .projects_area #programmingLanguage {
     height:100px;
-    width: 100%;
+    width: 85%;
     background-color: rgba(50,50,0,0.60);
     overflow: hidden;
     transition: all 1s ease-in-out;
@@ -57,15 +63,12 @@
     text-align: center;
     color: inherit;
 }
-.projects_area #programmingLanguage:hover {
-    height:auto;
-}
 
 .lang {
     color: ghostWhite;
     padding: 15px;
     font-size: 80%;
-    border: inset white 2px;
+    border: inset white 20px;
 }
 
 .skills_wrapper {

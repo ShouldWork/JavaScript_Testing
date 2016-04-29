@@ -45,3 +45,13 @@ function colorIt() {
 
 
 
+// declare function to modify text 
+
+function changeStyle(id) {
+    var colors = ['red', 'blue', 'green', 'aqua', 'purple', 'yellow', 'black'];
+    var randomNumber = Math.floor((Math.random() * 7) + 0);
+    var el = document.getElementById(id).style;
+    var currentColor = el.color;
+    var newColor = (currentColor !== '') ? colors[randomNumber] : 'green';
+    el.color = newColor;
+} 
