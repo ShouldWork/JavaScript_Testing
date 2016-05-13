@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>String Practice</title>
+    <script src="../js/stringExcercise.js"></script>
+    <style>
+
+        body{ width: 100%; height:auto;}
+        #container{width: 600px; height:auto; margin: 50px auto; overflow: hidden;}
+        .letter{width: 25px; background-color: #B53234; color:#FFF; padding: 10px; text-align:center; float:left; margin-left: 10px; cursor:pointer; border-radius: 4px;}
+        #output{width: 100%; margin-top: 25px; text-align:center; font-size: 25px; float:left;}
+        #allletters{width: 100%; float:left;}
+        #otherOutPut{width: 100%; text-align:center; font-size: 25px; float:left; margin: auto;}
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="container">
+    <div id="allletters">
+        <div class="letter" onclick="sendLetter(this.innerHTML)">R</div>
+        <div class="letter" onclick="sendLetter(this.innerHTML)">G</div>
+        <div class="letter" onclick="sendLetter(this.innerHTML)">S</div>
+        <div class="letter" onclick="sendLetter(this.innerHTML)">I</div>
+        <div class="letter" onclick="sendLetter(this.innerHTML)">T</div>
+        <div class="letter" onclick="sendLetter(this.innerHTML)">N</div>
+    </div>
+
+    <div id="output"></div>
+    <div id="otherOutPut"></div>
+</div>
+
+
+</body>
+</html>

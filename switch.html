@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch</title>
+    <style>
+        .row {
+            width: 94%;
+            height: 150px;
+            background-color: rgba(255,0,0,0.60);
+            margin: auto;
+            margin-bottom: 30px;
+        }
+        .cell {
+            width:100px;
+            height:120px;
+            background-color: rgba(0,0,0,0.80);
+            margin: 10px;
+            float: left;
+            font-size: 300%;
+        }
+        #resultPlace {
+            height: auto;
+            min-height: 35px;
+            width: 400px;
+            background-color: rgba(0,0,0,0.80);
+            color: ghostWhite;
+            font-size: 200%;
+            z-index: 1;
+            text-align: center;
+        }
+        #clockArea {
+            height: 35px;
+            width: 400px;
+            background-color: rgba(255,0,0,0.60);
+            color: black;
+            font-size: 200%;
+            z-index: 20;
+            text-align: center;
+        }
+        #todayText {
+            height: auto;
+            min-height: 35px;
+            width: auto;
+            background-color: transparent;
+            color: ghostWhite;
+            font-size: 200%;
+            z-index: 1;
+            text-align: center;
+
+        }
+        #monthText {
+            height: 35px;
+            width: auto;
+            background-color: rgba(255,255,255,0.40);
+            color: ghostWhite;
+            font-size: 250%;
+            z-index: 20;
+            text-align: center;
+            padding: 20px
+        }
+        #main {
+            width: 400px;
+            margin: auto;
+            box-shadow: 5px 10px 30px black;
+        }
+        #calendar-container {
+            justify-content: wrap;
+            width: 900px;
+            height:1000px;
+            background-color: rgba(0,0,0,0.80);
+            margin: auto;
+            clear: both;
+            color: white;
+
+        }
+    </style>
+</head>
+<body onload="makeBoxes()">
+<div id="main">
+
+
+    <div id="resultPlace"></div>
+    <div id="clockArea"></div>
+
+
+
+</div>
+
+<br>
+<br>
+
+<div id="calendar-container">
+    <div id="monthText"></div>
+    <div id="todayText"></div>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="js/switch.js"></script>
+</html>

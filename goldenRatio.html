@@ -5,64 +5,142 @@
     <title>Golden_Ratio</title>
 
 <style>
-    div {
+/*
+    .calc div {
         height: 100px;
         width: 200px;
-        background-color: rgba(0,0,0,0.70);
+        background-color: rgba(255,255,255,0.20);
         color: white;
         position: absolute;
-        left:45%;
-        top: 300px;
-        box-shadow: 2px 10px 30px 0 black;
+        left:25%;
+        top: 40px;
+        box-shadow: 1px 5px 30px 0 white; /*rgba(91,204,47,0.50), 5px 10px 60px 0 rgb(0,0,0); */
+       /* z-index: 100;
+        border: solid rgba(255,250,66,0.60) 1px;
     }
-    button {
+    .calc#container {
+        position: fixed;
+        background: rgba(0,0,0,0.90);
+        height: 200px;
+        width: 400px;
+        left:40%;
+        top: 300px;
+        box-shadow: 2px 10px 30px 0 rgb(0,0,0);
+        border: none;
+    }
+    .calc button {
         background-color: transparent;
         color: white;
-        border: inset 1px white;
+        border: inset 1px gold;
         outline: 0;
         position: absolute;
         bottom: 10px;
-        right: 35%;
+        right: 5%;
         height: 20px;
         width: 60px;
     }
-    button:hover {
+    .calc button:hover {
         outline: 2px;
         background-color: white;
         color: black;
     }
-    button:active{
+    .calc button:active{
         background-color: green;
     }
-    input {
+    .calc input {
         position: absolute;
         top: 10px;
         left:17%;
     }
-    p {
+    .calc p {
         position: absolute;
         top:25px;
         width: 100%;
         text-align: center;
 
     }
-    h1 {
+    .calc h1 {
         position: absolute;
-        top: 240px;
-
+        top: 430px;
+        z-index: 1000;
+        color: gold;
+        text-align: center;
+        width: 100%;
+    }
+    .calc h2 {
+        position: absolute;
+        top: 280px;
+        z-index: 999;
+        color: gold;
+        text-align: center;
+        width: 100%;
+    }
+*/
+    .busiCard {
+        height: 150px;
+        width: 300px;
+        background-color: rgba(0,0,0,0.80);
+        border: solid black 1px;
+        position: relative;
+        top: 100px;
+        color: ghostWhite;
+    }
+    .busiCard #myName {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        color: red;
+    }
+    .busiCard #lastName {
+        position: absolute;
+        top: 5px;
+        left: 50px;
+    }
+    .busiCard #akaName {
+        position: absolute;
+        top: 25px;
+        left: 5px;
+        font-size: 80%;
+    }
+    .busiCard #title {
+        position: absolute;
+        top: 40px;
+        left: 5px;
+        font-size: 60%;
+    }
+    .busiCard #manifesto {
+        position: absolute;
+        bottom: 5px;
+        right: 15px;
     }
 </style>
 
 
 </head>
-<body>
-<h1 style="width: 100%; text-align: center; color: gold">Golden Ratio Calculator</h1>
-<div>
-    <input placeholder="Enter Number..." id="userInput">
-    <p id="showMe"></p>
-    <button onclick="fib1()">Fib it</button>
-</div>
+<body onload="busiCardLoad()" style="background-color: blue">
 
+<!--
+<h1 class="calc">Golden Ratio Calculator</h1>
+<h2 id="wowza" class="calc"></h2>
+<div id="container" class="calc">
+    <div>
+
+        <input placeholder="Enter Number..." id="userInput">
+        <p id="showMe"></p>
+         <button onclick="fib1()" style="left: 5%;">Fib it</button>
+        <button onclick="factorial1()">Factorial</button>
+    </div>
+</div>
+-->
+
+    <div class="busiCard">
+        <div id="lastName"></div>
+        <div id="akaName"></div>
+        <div id="title"></div>
+        <div id="manifesto"></div>
+        <div id="myName"></div>
+    </div>
+<button onclick="getName()" style="position: absolute; top: 300px;">Click it!</button>
 </body>
     <script type="text/javascript" src="ratioScript.js"></script>
 </html>
