@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Skull Time</title>
+<style>
+
+body{width: 100%; height: auto; margin: 0;}
+#container{width: 800px; background-color: #333333; height: 500px; margin: 0 auto; overflow: hidden; clear:both;}
+.skull{top: 100px; transition: all 1s ease-in-out; width: 114px; height: 142px; background-image: url(../js/skull.png); float:left; cursor:pointer;}
+
+
+</style>
+</head>
+
+<body onload="addStuff()">
+
+
+<div id="container">
+
+	<div class="skull" style="position: absolute; left:150px"></div>
+    <div class="skull" style="position: absolute; left:300px"></div>
+    <div class="skull" style="position: absolute; left:450px"></div>
+    
+    <input id="counter" type="text" value="0"/>
+
+</div>
+
+<script src="../js/skull.js" type="text/javascript">
+ 
+
+</script>
+
+</body>
+</html>

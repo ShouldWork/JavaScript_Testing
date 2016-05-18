@@ -32,17 +32,16 @@ document.getElementById('first').addEventListener('click',function() {
 
 //we make a new promise we promise a numeric count of this promise from
 
-function promiseFunction() {
-    var random = Math.floor((Math.random() * 2) + 1);
-    if (random == 1) {
-        var truth = true;
-    } else {
-        truth = false;
-    }
+var random = Math.floor((Math.random() * 2) + 1);
+if (random == 1) {
+    var truth = true;
+} else {
+    truth = false;
 }
 
+
 function newFunction(truth) {
-    var promise = new Promise(
+    return new Promise(
         function (resolve, reject) {
             setTimeout(
                 function () {
@@ -59,6 +58,49 @@ function newFunction(truth) {
     );
 }
 
+
+function toUppperArrayAsyncNew(listOfStrings){
+    return new Promise(function(resolve,reject){
+        if (!Array.isArray(listOfStrings)){
+            reject('Failed hard style')
+        } else {
+            for (var h = 0; h < listOfStrings.length; h++) {
+                listOfStrings[i] = listOfStrings[i].toUpperCase();
+            }
+            resolve(listOfStrings);
+        }
+    })
+}
+
+function firstCharAysncNew(listOfStrings){
+    return new Promise(function(resolve,reject){
+        if (!Array.isArray(listOfStrings)){
+            reject('Failed hard style')
+        } else {
+            for (var h = 0; h < listOfStrings.length; h++) {
+                listOfStrings[i] = listOfStrings[i].charAt(0);
+            }
+            resolve(listOfStrings);
+        }
+    })
+}
+
+
+function sortArrayAsyncNew(listOfStrings){
+    return new Promise(function(resolve,reject){
+        if (!Array.isArray(listOfStrings)){
+            reject('Failed hard style')
+        } else {
+            resolve(listOfStrings.sort());
+        }
+    })
+}
+
+
+
+
+
+/*
 var promise2 = new Promise(
     function(resolve,reject){
         setTimeout(
@@ -74,26 +116,39 @@ var promise2 = new Promise(
         )
     }
 );
+*/
+
+var myNewList = "";
+var promiseToUpper = toUppperArrayAsyncNew(myNewList);
+var promiseToSort = sortArrayAsyncNew(myNewList);
+var promiseFirstChar = firstCharAysncNew(myNewList);
+
+
+Promise.all(promiseToUpper,promiseToSort,promiseFirstChar).then(function (dataArray) {
+    onSuccess(dataArray[0]);
+    onSuccess2(dataArray[1]);
+});
 
 
 
-var onSuccess = function(message) {
+
+var onSuccess = function(dataArray) {
     first.style.background = 'green';
     first.innerHTML = message;
 };
 
-var onError = function(message) {
+var onError = function(dataArray) {
     first.style.background = 'red';
     first.innerHTML = message;
 };
 
 
-var onSuccess2 = function(message) {
+var onSuccess2 = function(dataArray) {
     second.style.background = 'green';
     second.innerHTML = message;
 };
 
-var onError2 = function(message) {
+var onError2 = function(dataArray) {
     second.style.background = 'red';
     second.innerHTML = message;
 };
@@ -108,10 +163,3 @@ var someFail = function() {
     third.innerHTML = 'One or more promises were not kept!'
 };
 
-
-promise.then(onSuccess,onError);
-
-promise2.then(onSuccess2,onError2);
-
-
-Promise.all([promise2,promise]).then(allSuccess,someFail);
