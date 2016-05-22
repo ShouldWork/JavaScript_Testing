@@ -63,7 +63,7 @@
     text-wrap: none;
     color: ghostWhite;
     float: left;
-    border-bottom: double 1px ghostwhite;
+    border-bottom: solid 1px ghostwhite;
 }
 
 .parRowPro {
@@ -97,11 +97,34 @@ body {
     border-radius: 10px;
     margin-bottom: 5px;
 }
+.outCell {
+    height: 30px;
+    width: 60px;
+    float:left;
+    background-color: transparent;
+    text-align: center;
+    overflow: hidden;
+    line-height: 30px;
+    color: ghostWhite;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.contactInfo {
+    text-shadow: none;
+    font-family: Arial;
+    position:absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    height: auto;
+    overflow: hidden;
+}
 #scoreCardContainer {
     padding: 10px;
     margin-left: 5%;
     margin-right: 5%;
-
+    overflow: auto;
 }
 #scoreCard {
     margin: auto;
@@ -110,23 +133,27 @@ body {
     overflow: hidden;
     position: relative;
 
+
 }
 #outCol {
+    height: auto;
+    width: 60px;
     content: 'Out';
-    line-height: 60px;
+    line-height: 30px;
     text-align: center;
 }
-#courseName {
+#courseInfo {
+    position: relative;
     margin-top: 20px;
     height: 380px;
     width: auto;
     color: ghostWhite;
-    background: transparent url('../src/images/foxHollowHeader.jpg') no-repeat;
+    background: transparent url('../src/images/foxHollowHeader.jpg') center no-repeat;
     font-size: 60px;
     text-align: center;
     background-size: cover;
-    text-shadow: 0 0 2px #000;
-    font-family: cursive;
+    text-shadow: 0 0 10px #000;
+    font-family: "Milonga",cursive;
     padding-top: 10%;
     box-shadow: 1px 2px 30px black;
 }
@@ -136,7 +163,7 @@ body {
     bottom:0;
     left:0;
     right:0;
-    background: white url('../src/images/foxHollowTop.jpg')  no-repeat;
+    background: white url('../src/images/foxHollowTop.jpg') no-repeat;
     background-size: cover;
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
@@ -146,12 +173,35 @@ body {
     z-index: -1;
 }
 
-#theCity, #phoneNumber {
-    font-size: 20px;
-    color: red;
-}
 #teeDrop {
     width: 100px;
     height: 80px;
     box-sizing: border-box;
+}
+
+/*---Footer---*/
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right:0;
+    height: 80px;
+    background-color: rgba(0,0,0,0.50);
+    color: rgba(255,255,255,0.40);
+    text-align: right;
+    padding-right: 20px
+}
+
+.footer .main {
+    position: fixed;
+    font-size: 15px;
+    bottom: 15px;
+    right: 10px;
+}
+.footer .secondary {
+    position: fixed;
+    font-size: 10px;
+    bottom: 5px;
+    right: 10px;
 }

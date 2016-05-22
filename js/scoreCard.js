@@ -22,7 +22,6 @@ function loadMe(){
         });
 //This is a gross timer... pretend it doesn't exist...
     setTimeout(function(){
-            document.getElementById('theCity').innerHTML = 'Something';
         //after the 1 second specified in the timer it then calls the buildPage function.
             buildPage(18);
         }
@@ -39,7 +38,11 @@ function buildPage(numHoles) {
     "use strict";
     // calls the course name from the JSON file and adds it to the coursename innerHTML
     //in the DOM
-    document.getElementById('courseName').innerHTML = testCourse.course.name;
+    document.getElementById('courseName').innerHTML += testCourse.course.name;
+    document.getElementById('theCity').innerHTML += testCourse.course.city + ", " + testCourse.course.state_or_province;
+    document.getElementById('phoneNumber').innerHTML += testCourse.course.phone;
+    document.getElementById('websiteLink').innerHTML += testCourse.course.name;
+    document.getElementById('websiteLink').setAttribute('href',testCourse.course.website);
 
     // Prepares the column for the players name. This is outside of the for loop
     //This doesn't add any players but creates the column space to be added to later.
@@ -69,13 +72,19 @@ function buildPage(numHoles) {
         //hole 9 and 10. I have added some styling in the javaScript but really it should
         //be handled in a CSS class.
         if (j == 8){
+            var outCell = document.createElement('div');
+            var blankOutCell = document.createElement('div');
             var outCol = document.createElement('div');
             document.getElementById('scoreCard').appendChild(outCol);
                 outCol.setAttribute('class', 'holeCol');
                 outCol.setAttribute('id', 'outCol');
-                outCol.style.height = '50px';
-                outCol.style.width = '50px';
-                outCol.innerHTML = 'Out';
+            document.getElementById('outCol').appendChild(outCell);
+                outCell.innerHTML = 'Out';
+                outCell.setAttribute('class','outCell');
+            document.getElementById('outCol').appendChild(blankOutCell);
+                blankOutCell.setAttribute('id' , 'blankOut');
+                blankOutCell.setAttribute('class' , 'outCell');
+                blankOutCell.innerHTML = '31';
         }
 
         //Still in the for loop and not the 0th column
@@ -111,6 +120,8 @@ function buildPage(numHoles) {
             //adds the par number to the innerHTML. This is pulled from the JSON file as an object.
             //The style sheet appends the word "par" to the number with the parRowPro:before selector.
             holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
+        //document.getElementById(outCol).appendChild(outCell);
+
     }
 }
 
@@ -146,6 +157,13 @@ function addPlayer(){
     //Start a for loop to add the input boxes to the hole column as will continue to run as
     //long as "k" is less the the value in the object
     for (var k = 0; k < testCourse.course.hole_count; k++) {
+        if (k == 8){
+            var outCell = document.createElement('div');
+            document.getElementById('outCol').appendChild(outCell);
+                outCell.setAttribute('class' , 'outCell');
+                outCell.setAttribute('id' , 'player' + numPlayers + 'out');
+                outCell.innerHTML = '14';
+        }
         var playerLevelPar = document.createElement('div');
         var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
         //Create a div to put to hold the par and input for the player
