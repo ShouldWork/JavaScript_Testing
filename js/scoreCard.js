@@ -55,6 +55,7 @@ function buildPage(numHoles) {
         document.getElementById('playerCol').appendChild(holeRowTitle);
         holeRowTitle.setAttribute('class','playerCol');
         holeRowTitle.innerHTML = 'Hole';
+
     //Create another span at the par row level.
     var parRowTitle = document.createElement('span');
         document.getElementById('playerCol').appendChild(parRowTitle);
@@ -76,6 +77,7 @@ function buildPage(numHoles) {
                 outCol.style.width = '50px';
                 outCol.innerHTML = 'Out';
         }
+
         //Still in the for loop and not the 0th column
         //Prepares the spans that will be inserted as the column headers
         //Hole column header
@@ -119,12 +121,13 @@ var numPlayers = 0;
 var players = [];
 //Function to add players to the score card.
 function addPlayer(){
+    //get the tee to be used
     //increment the numPlayers variable by one each time the function is ran.
     numPlayers ++;
     //Gather the player name from the modal
     var newName = document.getElementById('playerName').value;
-    //Gather the level from the modal
-    var level = document.getElementById('level').value;
+    //Gather the level from the modal and get the tee_box type
+    var level = document.getElementById('teeDrop').value;
     //gather the handicap from the modal
     var handicap = document.getElementById('handicap').value;
     //Push to the players array an object containing the player name, level, and handicap.
@@ -143,23 +146,41 @@ function addPlayer(){
     //Start a for loop to add the input boxes to the hole column as will continue to run as
     //long as "k" is less the the value in the object
     for (var k = 0; k < testCourse.course.hole_count; k++) {
+        var playerLevelPar = document.createElement('div');
+        var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
+        //Create a div to put to hold the par and input for the player
+        var scoreParContainer = document.createElement('div');
+        //initiate variable for the scoreParContainer id
+        var scoreParContainerId = 'player' + numPlayers + 'container' + k;
         //Create an input element for the players score to be added to the hole column
         var holeScoreRow = document.createElement('input');
         //Initiates and assigns the input id i.e "player1scoreCol1 player1scoreCol2 etc.
         var holeScoreRowId = 'player' + numPlayers + 'scoreCol' + k;
         //appends the newly created input element to the hole column by id i.e. column1 column2 etc
         //this is why the for loop is needed here so we can increment the k variable.
-        document.getElementById('column' + k).appendChild(holeScoreRow);
-        //sets the id attribute to the input element created
-        holeScoreRow.setAttribute('id', holeScoreRowId);
-        //adds some class to the newly created element
-        holeScoreRow.setAttribute('class', 'holeScoreRow');
+        document.getElementById('column' + k).appendChild(scoreParContainer);
+            scoreParContainer.setAttribute('class','scoreParContainer');
+            scoreParContainer.setAttribute('id',scoreParContainerId);
+            scoreParContainer.style.background = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color;
+        document.getElementById(scoreParContainerId).appendChild(playerLevelPar);
+            playerLevelPar.innerHTML = playerPar;
+            playerLevelPar.setAttribute('class','playerPar');
+
+        document.getElementById(scoreParContainerId).appendChild(holeScoreRow);
+            //sets the id attribute to the input element created
+            holeScoreRow.setAttribute('id', holeScoreRowId);
+            //adds some class to the newly created element
+            holeScoreRow.setAttribute('class', 'holeScoreRow');
+            
+
     }
     
     //These three lines clears the input boxes used in the modal so when adding another player
     //it starts out blank. Without these lines you will have to manually remove the previous
     //input every time you add a player. 
     document.getElementById('playerName').value = '';
-    document.getElementById('level').value = '';
+    document.getElementById('teeDrop').value = '';
     document.getElementById('handicap').value = '';
 }
+
+

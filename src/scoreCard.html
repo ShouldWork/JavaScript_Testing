@@ -3,124 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>ScoreCard</title>
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="../js/scoreCard.js" type="text/javascript"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        .holeScoreRow {
-            height: 25px;
-            width: 50px;
-            float: left;
-            background-color: transparent;
-            margin: 1px;
-            overflow: hidden;
-            color: ghostWhite;
-        }
-
-        .holeScoreRow:focus {
-            background-color: ghostWhite;
-            color:black;
-        }
-        .holeCol {
-            height: auto;
-            width: 50px;
-            min-width: 50px;
-            background-color: transparent;
-            float: left;
-            overflow: hidden;
-            color: ghostWhite;
-        }
-        .holeColTitleRow {
-            height: 30px;
-            min-width: 50px;
-            width: auto;
-            float: left;
-            border: solid 2px white;
-            background-color: transparent;
-            margin: 1px;
-            text-align: center;
-            line-height: 30px;
-            overflow: hidden;
-            border-radius: 10px;
-            color: ghostWhite;
-        }
-        .playerCol {
-            height: auto;
-            width: 50px;
-            min-width: 50px;
-            background-color: transparent;
-            text-align: center;
-            line-height: 30px;
-            text-wrap: none;
-            color: ghostWhite;
-            float: left;
-
-        }
-
-        .parRowPro {
-            height: 30px;
-            width: 50px;
-            float:left;
-            background-color: transparent;
-            margin: 1px;
-            border: 2px solid ghostWhite;
-            text-align: center;
-            overflow: hidden;
-            line-height: 30px;
-            border-radius: 10px;
-            color: ghostWhite;
-        }
-        .parRowPro:before{
-            content: 'Par ';
-        }
-
-        body {
-            background-color: rgba(0,0,0,0.80);
-        }
-
-        #scoreCard {
-            margin: auto;
-            border: solid 2px white;
-            height: auto;
-            width: auto;
-            overflow: hidden;
-            position: relative;
-        }
-        #outCol {
-            content: 'Out';
-            line-height: 60px;
-            text-align: center;
-        }
-        #courseName {
-            margin: auto;
-            border: solid 2px white;
-            height: 80px;
-            width: 905px;
-            color: ghostWhite;
-            background-color: transparent;
-            font-size: 60px;
-            text-align: center;
-        }
-        #theCity, #phoneNumber {
-            font-size: 20px;
-            color: red;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../css/scoreCardStyles.css">
 </head>
-<body onload="loadMe()">
+<body onload="loadMe()" class="overlay">
+<div id="background" class="mainBackground">
+
+</div>
     <div class="container">
         <div class="row">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Player</button>
             <div id='courseName'>
                 <div id='theCity'></div>
             </div>
             <div id="phoneNumber"></div>
-            <div id="scoreCard"></div>
+            <div id="scoreCardContainer">
+                <div id="scoreCard"></div>
+            </div>
+            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Add Player</button>
         </div>
 
 <!-- My Modal -->
@@ -138,8 +41,13 @@
                         <label for="handicap">
                             <input id="handicap" placeholder="handicap...">
                         </label>
-                        <label for="level">
-                            <input id="level" placeholder="Pro, Champ, Men, Women...">
+                        <label for="teeDrop">Level:
+                        <select name="level" id="teeDrop">
+                            <option value="0">Pro</option>
+                            <option value="1">Champion</option>
+                            <option value="2">Mens</option>
+                            <option value="3">Womens</option>
+                        </select>
                         </label>
                     </div>
                     <div class="modal-footer">

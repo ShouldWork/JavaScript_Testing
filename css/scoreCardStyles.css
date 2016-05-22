@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+.playerPar {
+    height: 25px;
+    width: 20px;
+    text-align: center;
+    float: left;
+    line-height: 25px;
+    padding-left: 3px;
+    padding-top: 2px;
+
+}
+.holeScoreRow {
+    height: 25px;
+    margin: 1px;
+    width: 25px;
+    background-color: transparent;
+    overflow: hidden;
+    color: ghostWhite;
+    float: right;
+    border: 0;
+    border-left: solid 1px ghostWhite;
+    border-radius: 2px;
+    outline: 0;
+    padding: 3px;
+}
+.container {
+    width: 80%;
+}
+.holeCol {
+    height: auto;
+    width: 60px;
+    min-width: 50px;
+    background-color: transparent;
+    float: left;
+    overflow: hidden;
+    color: ghostWhite;
+    margin: 1px;
+}
+.holeColTitleRow {
+    height: 30px;
+    min-width: 60px;
+    width: auto;
+    float: left;
+    border: solid 2px white;
+    background-color: transparent;
+    text-align: center;
+    line-height: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+    color: ghostWhite;
+    margin-bottom: 5px;
+}
+.playerCol {
+    height: auto;
+    width: 50px;
+    margin-bottom: 5px;
+    min-width: 50px;
+    background-color: transparent;
+    text-align: center;
+    line-height: 30px;
+    text-wrap: none;
+    color: ghostWhite;
+    float: left;
+    border-bottom: double 1px ghostwhite;
+}
+
+.parRowPro {
+    height: 30px;
+    width: 60px;
+    float:left;
+    background-color: transparent;
+    border: 2px solid ghostWhite;
+    text-align: center;
+    overflow: hidden;
+    line-height: 30px;
+    border-radius: 10px;
+    color: ghostWhite;
+    margin-bottom: 5px;
+
+}
+.parRowPro:before{
+    content: 'Par ';
+}
+
+body {
+    background-color: rgba(0,0,0,0.80);
+}
+.scoreParContainer {
+    overflow: hidden;
+    float: left;
+    height: 30px;
+    width: 60px;
+    border: solid 2px white;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+#scoreCardContainer {
+    padding: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+#scoreCard {
+    margin: auto;
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+
+}
+#outCol {
+    content: 'Out';
+    line-height: 60px;
+    text-align: center;
+}
+#courseName {
+    margin-top: 20px;
+    height: 380px;
+    width: auto;
+    color: ghostWhite;
+    background: transparent url('../src/images/foxHollowHeader.jpg') no-repeat;
+    font-size: 60px;
+    text-align: center;
+    background-size: cover;
+    text-shadow: 0 0 2px #000;
+    font-family: cursive;
+    padding-top: 10%;
+    box-shadow: 1px 2px 30px black;
+}
+.mainBackground {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background: white url('../src/images/foxHollowTop.jpg')  no-repeat;
+    background-size: cover;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -1;
+}
+
+#theCity, #phoneNumber {
+    font-size: 20px;
+    color: red;
+}
+#teeDrop {
+    width: 100px;
+    height: 80px;
+    box-sizing: border-box;
+}
