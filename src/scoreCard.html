@@ -13,60 +13,64 @@
 <div id="background" class="mainBackground">
 
 </div>
-    <div class="container">
-        <div class="row">
-            <div id='courseInfo'>
-                <div id="courseName"></div>
-                <div class="contactInfo">
-                    <div id='theCity'></div>
-                    <div id="phoneNumber"></div>
-                    <div id="site"><a href="" id="websiteLink"></a></div>
-                </div>
+<div class="container">
+    <div class="row">
+        <div id='courseInfo'>
+            <div id="doDiv">Select a Course</div>
+            <div id="selectCourse"></div>
+            <div id="courseName"></div>
+            <div class="contactInfo">
+                <div id='theCity'></div>
+                <div id="phoneNumber"></div>
+                <div id="site"><a href="" id="websiteLink"></a></div>
             </div>
-
-            <div id="scoreCardContainer">
-                <div id="scoreCard"></div>
-            </div>
-            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Add Player</button>
         </div>
 
-<!-- My Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Player information:</h4>
-                    </div>
-                    <div class="modal-body">
-                        <label for="playerName">
-                            <input id="playerName" placeholder="Name...">
-                        </label>
-                        <label for="handicap">
-                            <input id="handicap" placeholder="handicap...">
-                        </label>
-                        <label for="teeDrop">Tee Box:
+        <div id="scoreCardContainer">
+            <div id="scoreCard"></div>
+        </div>
+        <button id="addPlayerBtn" type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" onclick="addTeeBoxes()">Add Player</button>
+    </div>
+
+    <!-- My Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Player information:</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="playerName">
+                        <input id="playerName" placeholder="Name...">
+                    </label>
+                    <label for="handicap">
+                        <input id="handicap" placeholder="handicap...">
+                    </label>
+                    <label for="teeDrop">Tee Box:
                         <select name="level" id="teeDrop">
+                            <!--
                             <option value="0">Pro</option>
                             <option value="1">Champion</option>
                             <option value="2">Mens</option>
                             <option value="3">Womens</option>
+                        -->
                         </select>
-                        </label>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addPlayer()">Add</button>
-                    </div>
+                    </label>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addPlayer()">Add</button>
+                </div>
             </div>
-        </div>
-<!-- My Modal end -->
-        <div class="footer">
-            <p class="main">Aesthetics score card<p>
-            <p class="secondary">By Blake Locke</p>
+
         </div>
     </div>
+    <!-- My Modal end -->
+    <div class="footer">
+        <p class="main">Aesthetics score card<p>
+        <p class="secondary">By Blake Locke</p>
+    </div>
+</div>
 
 </body>
 </html>

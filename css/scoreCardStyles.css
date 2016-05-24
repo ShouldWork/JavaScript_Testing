@@ -34,7 +34,6 @@
     min-width: 50px;
     background-color: transparent;
     float: left;
-    overflow: hidden;
     color: ghostWhite;
     margin: 1px;
 }
@@ -122,18 +121,15 @@ body {
 }
 #scoreCardContainer {
     padding: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
+    float: none;
     overflow: auto;
 }
 #scoreCard {
-    margin: auto;
-    height: auto;
-    width: auto;
-    overflow: hidden;
+    width: 90%;
+    overflow:hidden;
+    padding: 10px;
     position: relative;
-
-
+    margin: auto;
 }
 #outCol {
     height: auto;
@@ -145,17 +141,24 @@ body {
 #courseInfo {
     position: relative;
     margin-top: 20px;
-    height: 380px;
+    height: auto;
+    min-height: 380px;
     width: auto;
     color: ghostWhite;
-    background: transparent url('../src/images/foxHollowHeader.jpg') center no-repeat;
+    background: transparent url('../src/images/foxHollowHeader.jpg') top no-repeat;
     font-size: 60px;
     text-align: center;
     background-size: cover;
     text-shadow: 0 0 10px #000;
     font-family: "Milonga",cursive;
-    padding-top: 10%;
     box-shadow: 1px 2px 30px black;
+    overflow: hidden;
+    padding: 20px;
+}
+
+#courseName {
+    position: relative;
+    top: 180px;
 }
 .mainBackground {
     position:absolute;
@@ -175,7 +178,7 @@ body {
 
 #teeDrop {
     width: 100px;
-    height: 80px;
+    height: 30px;
     box-sizing: border-box;
 }
 
@@ -204,4 +207,44 @@ body {
     font-size: 10px;
     bottom: 5px;
     right: 10px;
+}
+
+.thisCourse {
+    height: auto;
+    width: auto;
+    color: ghostWhite;
+    background-color: rgba(0,0,0,0.80);
+    float: left;
+    font-size: 20px;
+    padding: 20px;
+    margin: 5px;
+}
+
+#addPlayerBtn {
+    display: none;
+}
+
+
+#doDiv {
+    display: none;
+    padding: 30px;
+    height: auto;
+    width: auto;
+    color: ghostWhite;
+    font-size: 80px;
+    background-color: transparent;
+    text-align: center;
+    text-shadow: 0 0 10px black;
+    border-top: solid 5px white;
+
+}
+
+#selectCourse {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    height: auto;
+    width: auto;
+    padding: 15px;
+    border-bottom: solid 5px white;
 }
