@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0175332-997c-4d97-a36c-78fb6e3720b1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/aJaxbasics.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/aJaxbasics.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scoreCard(1).html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/updateFromInput.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/updateFromInput.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/scoreCardStyles.css" afterPath="$PROJECT_DIR$/css/scoreCardStyles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scoreCard.js" afterPath="$PROJECT_DIR$/js/scoreCard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scoreCard.html" afterPath="$PROJECT_DIR$/src/scoreCard.html" />
     </list>
     <ignored path="JavaScript_Testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,41 +28,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.40012407">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="scoreCard.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="scoreCard.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/scoreCard.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="885">
+                <state relative-caret-position="1125">
                   <caret line="75" column="7" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="scoreCard(1).html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/scoreCard(1).html">
+          <file leaf-file-name="updateFromInput.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/updateFromInput.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="540">
-                  <caret line="36" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BigBankBudget.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/BigBankBudget.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="885">
-                  <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="63" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="scoreCardStyles.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/css/scoreCardStyles.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="202" column="16" selection-start-line="202" selection-start-column="16" selection-end-line="202" selection-end-column="16" />
+                <state relative-caret-position="330">
+                  <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -122,8 +99,8 @@
           <file leaf-file-name="scoreCard.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/scoreCard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1419">
-                  <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+                <state relative-caret-position="615">
+                  <caret line="54" column="74" selection-start-line="54" selection-start-column="74" selection-end-line="54" selection-end-column="74" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -153,6 +130,18 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="updateFromInput.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/updateFromInput.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="165">
+                  <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+                  <folding>
+                    <element signature="n#!!doc;n#updateDiv#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -161,8 +150,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -214,9 +203,11 @@
         <option value="$PROJECT_DIR$/js/golf.json" />
         <option value="$PROJECT_DIR$/src/aJaxbasics.html" />
         <option value="$PROJECT_DIR$/js/aJaxbasics.js" />
-        <option value="$PROJECT_DIR$/js/scoreCard.js" />
         <option value="$PROJECT_DIR$/src/scoreCard.html" />
         <option value="$PROJECT_DIR$/css/scoreCardStyles.css" />
+        <option value="$PROJECT_DIR$/js/updateFromInput.js" />
+        <option value="$PROJECT_DIR$/src/updateFromInput.html" />
+        <option value="$PROJECT_DIR$/js/scoreCard.js" />
       </list>
     </option>
   </component>
@@ -452,7 +443,7 @@
       <workItem from="1463752711498" duration="9416000" />
       <workItem from="1463869116900" duration="20138000" />
       <workItem from="1464011038008" duration="8230000" />
-      <workItem from="1464057854868" duration="387000" />
+      <workItem from="1464057854868" duration="4610000" />
     </task>
     <task id="LOCAL-00001" summary="Golden Ratio calculator and JS added.">
       <created>1461946432715</created>
@@ -510,32 +501,39 @@
       <option name="project" value="LOCAL" />
       <updated>1463947559067</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated loadMe() function to include course names and onclick events. Added divs to show the courses. Updated the tee_boxes so that it will populate the select menu based on the object as not all courses have the same tee box options. Updated mens tee box color and background so it's not white out. &#10;">
+      <created>1464058819266</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1464058819267</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138298000" />
+    <option name="totallyTimeSpent" value="142521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1868" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12723336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495596" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -574,27 +572,14 @@
     <MESSAGE value="Updated from home. Added a little more styling and commented out the javascript code for better readability." />
     <MESSAGE value="Updated with styling mostly. Added lots of javaScript to to the playerScore divs. Linked to testCourse stuff." />
     <MESSAGE value="Updated course information and positioning. Added links to course website from the object. &#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated course information and positioning. Added links to course website from the object. &#10;" />
+    <MESSAGE value="Updated loadMe() function to include course names and onclick events. Added divs to show the courses. Updated the tee_boxes so that it will populate the select menu based on the object as not all courses have the same tee box options. Updated mens tee box color and background so it's not white out. &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated loadMe() function to include course names and onclick events. Added divs to show the courses. Updated the tee_boxes so that it will populate the select menu based on the object as not all courses have the same tee box options. Updated mens tee box color and background so it's not white out. &#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/BigBankBudget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Portfolio/src/css/side_nav.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5310">
@@ -886,6 +871,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/demoWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scoreCard(1).html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BigBankBudget.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/scoreCardStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="202" column="16" selection-start-line="202" selection-start-column="16" selection-end-line="202" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/updateFromInput.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scoreCard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" column="7" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/updateFromInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc;n#updateDiv#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/webWorker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -904,55 +949,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/demoWorker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scoreCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1419">
-          <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+        <state relative-caret-position="615">
+          <caret line="54" column="74" selection-start-line="54" selection-start-column="74" selection-end-line="54" selection-end-column="74" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BigBankBudget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scoreCard(1).html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scoreCard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="75" column="7" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/scoreCardStyles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="202" column="16" selection-start-line="202" selection-start-column="16" selection-end-line="202" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>

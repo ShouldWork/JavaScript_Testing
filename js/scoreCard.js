@@ -52,7 +52,7 @@ var xhttpPost = new XMLHttpRequest();
 //Cali
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
-var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 30}
+var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 10};
 
 function loadMe() {
     $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
@@ -229,6 +229,7 @@ function addPlayer(){
     //increment the numPlayers variable by one each time the function is ran.
 
     numPlayers ++;
+    var thisPlayer = "player" + numPlayers + "out";
     //Gather the player name from the modal
     var newName = document.getElementById('playerName').value;
     //Gather the level from the modal and get the tee_box type
@@ -256,7 +257,7 @@ function addPlayer(){
             document.getElementById('outCol').appendChild(outCell);
             outCell.setAttribute('class' , 'outCell');
             outCell.setAttribute('id' , 'player' + numPlayers + 'out');
-            outCell.innerHTML = '14';
+            outCell.innerHTML = '0';
         }
         var playerLevelPar = document.createElement('div');
         var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
@@ -290,6 +291,7 @@ function addPlayer(){
         holeScoreRow.setAttribute('id', holeScoreRowId);
         //adds some class to the newly created element
         holeScoreRow.setAttribute('class', 'holeScoreRow');
+        holeScoreRow.setAttribute('onchange','updateOut(this.value,\"' + thisPlayer + '\")');
         if (testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type == 'men') {
             console.log(testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type);
             holeScoreRow.style.color = 'black';
@@ -310,3 +312,13 @@ function addPlayer(){
     document.getElementById('handicap').value = '';
 }
 
+function updateOut(value,row) {
+    "use strict";
+    console.log(row);
+    var inputValue = document.getElementById(row).innerHTML;
+    if (inputValue !=="") {
+        document.getElementById(row).innerHTML = Number(value) + Number(inputValue);
+    } else {
+        document.getElementById(row).innerHTML = value;
+    }
+}
