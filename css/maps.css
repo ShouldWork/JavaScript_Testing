@@ -1,0 +1,66 @@
+body {
+    height: 90%;
+    width: 90%;
+}
+
+#map {
+    margin: auto;
+    height: 600px;
+    width: 800px;
+    border: solid 2px black;
+    display: block;
+}
+
+.thisCourse {
+    height: auto;
+    width: auto;
+    color: ghostWhite;
+    background-color: rgba(0,0,0,0.80);
+    float: left;
+    font-size: 20px;
+    padding: 20px;
+    margin: 5px;
+    border: solid 1px ghostWhite;
+}
+
+#doDiv {
+    display: none;
+    padding: 30px;
+    height: auto;
+    width: auto;
+    color: ghostWhite;
+    font-size: 80px;
+    background-color: transparent;
+    text-align: center;
+    text-shadow: 0 0 10px black;
+    border-top: solid 5px white;
+
+}
+
+#selectCourse {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    height: auto;
+    width: auto;
+    padding: 15px;
+    border-bottom: solid 5px white;
+}
+
+#holesContainer {
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    height: auto;
+    width: auto;
+    margin: 10px;
+}
+
+button {
+    height: 30px;
+    width: 40px;
+    background-color: rgba(0,0,0,0.80);
+    outline: 0;
+    border: 1px solid white;
+    color: ghostWhite;
+}

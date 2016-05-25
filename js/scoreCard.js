@@ -43,16 +43,26 @@
  */
 
 
+function initMap() {
+    // Create a map object and specify the DOM element for display.
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.397, lng: -111.863},
+        scrollwheel: true,
+        zoom: 15
+    });
+}
+
+
 //initiate and empty object. This object is populated by the JSON so if you are not using the JSOn
 //just yet this won't be needed.     
 var testCourse ={};
-var closeCourses={}
+var closeCourses={};
 var xhttp = new XMLHttpRequest();
 var xhttpPost = new XMLHttpRequest();
 //Cali
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
-var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 10};
+var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 100};
 
 function loadMe() {
     $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
@@ -103,6 +113,7 @@ function getCourseInfo(id) {
  xhttpPost.send(obj)
  };
  */
+//api code AIzaSyDA3noyMZEZxDmgYjYwv89CWdzbKMmi5f0
 // build the score card grid
 //This builds the hole colums and adds to the columns the column headers.
 
@@ -123,23 +134,23 @@ function buildPage(numHoles) {
     // Prepares the column for the players name. This is outside of the for loop
     //This doesn't add any players but creates the column space to be added to later.
     var playerCol = document.createElement('div');
-    document.getElementById('scoreCard').appendChild(playerCol);
-    playerCol.setAttribute('class','playerCol');
-    playerCol.setAttribute('id','playerCol');
+        document.getElementById('scoreCard').appendChild(playerCol);
+        playerCol.setAttribute('class','playerCol');
+        playerCol.setAttribute('id','playerCol');
 
     //Create a span element into the Player column. Again this is to prepare the players column
     //I found that this is required to make sure that the player name col. stays in line with the
     //input columns.
     var holeRowTitle = document.createElement('span');
     document.getElementById('playerCol').appendChild(holeRowTitle);
-    holeRowTitle.setAttribute('class','playerCol');
-    holeRowTitle.innerHTML = 'Hole';
+        holeRowTitle.setAttribute('class','playerCell');
+        holeRowTitle.innerHTML = 'Hole';
 
     //Create another span at the par row level.
     var parRowTitle = document.createElement('span');
     document.getElementById('playerCol').appendChild(parRowTitle);
-    parRowTitle.setAttribute('class','playerCol');
-    parRowTitle.innerHTML = 'Par';
+        parRowTitle.setAttribute('class','playerCell');
+        parRowTitle.innerHTML = 'Par';
 
 
     //This is the for loop that will create the Hole columns.
@@ -152,15 +163,15 @@ function buildPage(numHoles) {
             var blankOutCell = document.createElement('div');
             var outCol = document.createElement('div');
             document.getElementById('scoreCard').appendChild(outCol);
-            outCol.setAttribute('class', 'holeCol');
-            outCol.setAttribute('id', 'outCol');
+                outCol.setAttribute('class', 'holeCol');
+                outCol.setAttribute('id', 'outCol');
             document.getElementById('outCol').appendChild(outCell);
-            outCell.innerHTML = 'Out';
-            outCell.setAttribute('class','outCell');
+                outCell.innerHTML = 'Out';
+                outCell.setAttribute('class','outCell');
             document.getElementById('outCol').appendChild(blankOutCell);
-            blankOutCell.setAttribute('id' , 'blankOut');
-            blankOutCell.setAttribute('class' , 'outCell');
-            blankOutCell.innerHTML = '31';
+                blankOutCell.setAttribute('id' , 'blankOut');
+                blankOutCell.setAttribute('class' , 'outCell');
+                blankOutCell.innerHTML = '31';
         }
 
         //Still in the for loop and not the 0th column
@@ -177,26 +188,26 @@ function buildPage(numHoles) {
         //appends the newly created Hole column to the "Score card" div that was
         //already created in the HTML by the id scorecard
         document.getElementById('scoreCard').appendChild(holeCol);
-        //adds the holecol class from the style section in the HTML to the hole column
-        holeCol.setAttribute('class', 'holeCol');
-        // adds the id to the hole column to be called later when adding players.
-        holeCol.setAttribute('id', holeColId);
-        //appends the already prepared hole col header to the newly created hole column
+            //adds the holecol class from the style section in the HTML to the hole column
+            holeCol.setAttribute('class', 'holeCol');
+            // adds the id to the hole column to be called later when adding players.
+            holeCol.setAttribute('id', holeColId);
+            //appends the already prepared hole col header to the newly created hole column
         document.getElementById(holeColId).appendChild(holeColTitleRow);
-        //applies the class holeColTitleRow to the hole column header
-        holeColTitleRow.setAttribute('class', 'holeColTitleRow');
-        //writes into the column header the hole numer i.e 1-18
-        holeColTitleRow.innerHTML = j + 1;
-        //appends to the hole column the already prepared span for the par row.
-        //this is a good place to add other static rows that will just be apart of the score card
-        //such as yardage or tee boxes etc.
+            //applies the class holeColTitleRow to the hole column header
+            holeColTitleRow.setAttribute('class', 'holeColTitleRow');
+            //writes into the column header the hole numer i.e 1-18
+            holeColTitleRow.innerHTML = j + 1;
+            //appends to the hole column the already prepared span for the par row.
+            //this is a good place to add other static rows that will just be apart of the score card
+            //such as yardage or tee boxes etc.
         document.getElementById(holeColId).appendChild(holeColParRow);
-        //add the parRowPro class to the par column header span
-        holeColParRow.setAttribute( 'class' , 'parRowPro');
-        //adds the par number to the innerHTML. This is pulled from the JSON file as an object.
-        //The style sheet appends the word "par" to the number with the parRowPro:before selector.
-        holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
-        //document.getElementById(outCol).appendChild(outCell);
+            //add the parRowPro class to the par column header span
+            holeColParRow.setAttribute( 'class' , 'parRowPro');
+            //adds the par number to the innerHTML. This is pulled from the JSON file as an object.
+            //The style sheet appends the word "par" to the number with the parRowPro:before selector.
+            holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
+            //document.getElementById(outCol).appendChild(outCell);
 
     }
     setTimeout(function () {
@@ -283,15 +294,15 @@ function addPlayer(){
         }
         scoreParContainer.style.background = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color;
         document.getElementById(scoreParContainerId).appendChild(playerLevelPar);
-        playerLevelPar.innerHTML = playerPar;
-        playerLevelPar.setAttribute('class','playerPar');
+            playerLevelPar.innerHTML = playerPar;
+            playerLevelPar.setAttribute('class','playerPar');
 
         document.getElementById(scoreParContainerId).appendChild(holeScoreRow);
-        //sets the id attribute to the input element created
-        holeScoreRow.setAttribute('id', holeScoreRowId);
-        //adds some class to the newly created element
-        holeScoreRow.setAttribute('class', 'holeScoreRow');
-        holeScoreRow.setAttribute('onchange','updateOut(this.value,\"' + thisPlayer + '\")');
+            //sets the id attribute to the input element created
+            holeScoreRow.setAttribute('id', holeScoreRowId);
+            //adds some class to the newly created element
+            holeScoreRow.setAttribute('class', 'holeScoreRow');
+            holeScoreRow.setAttribute('onchange','updateOut(this.value,\"' + thisPlayer + '\")');
         if (testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type == 'men') {
             console.log(testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type);
             holeScoreRow.style.color = 'black';

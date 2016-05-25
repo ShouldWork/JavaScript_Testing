@@ -5,15 +5,11 @@
     height: 25px;
     width: 20px;
     text-align: center;
-    float: left;
     line-height: 25px;
-    padding-left: 3px;
-    padding-top: 2px;
-
+    float: left;
 }
 .holeScoreRow {
     height: 25px;
-    margin: 1px;
     width: 25px;
     background-color: transparent;
     overflow: hidden;
@@ -23,25 +19,28 @@
     border-left: solid 1px ghostWhite;
     border-radius: 2px;
     outline: 0;
-    padding: 3px;
+
+
 }
 .container {
     width: 80%;
 }
 .holeCol {
     height: auto;
-    width: 60px;
+    width: auto;
     min-width: 50px;
     background-color: transparent;
-    float: left;
     color: ghostWhite;
     margin: 1px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    overflow: hidden;
 }
 .holeColTitleRow {
     height: 30px;
     min-width: 60px;
     width: auto;
-    float: left;
     border: solid 2px white;
     background-color: transparent;
     text-align: center;
@@ -49,26 +48,28 @@
     overflow: hidden;
     border-radius: 10px;
     color: ghostWhite;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .playerCol {
     height: auto;
-    width: 50px;
-    margin-bottom: 5px;
-    min-width: 50px;
+    width: auto;
     background-color: transparent;
-    text-align: center;
-    line-height: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 10px;
+}
+
+.playerCell {
     text-wrap: none;
     color: ghostWhite;
-    float: left;
     border-bottom: solid 1px ghostwhite;
+    text-align: center;
+    line-height: 30px;
 }
 
 .parRowPro {
     height: 30px;
     width: 60px;
-    float:left;
     background-color: transparent;
     border: 2px solid ghostWhite;
     text-align: center;
@@ -76,8 +77,7 @@
     line-height: 30px;
     border-radius: 10px;
     color: ghostWhite;
-    margin-bottom: 5px;
-
+    margin-bottom: 10px;
 }
 .parRowPro:before{
     content: 'Par ';
@@ -88,24 +88,21 @@ body {
 }
 .scoreParContainer {
     overflow: hidden;
-    float: left;
     height: 30px;
     width: 60px;
     border: solid 2px white;
     text-align: center;
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .outCell {
     height: 30px;
     width: 60px;
-    float:left;
     background-color: transparent;
     text-align: center;
     overflow: hidden;
     line-height: 30px;
     color: ghostWhite;
-    margin-bottom: 5px;
     border-radius: 10px;
 }
 
@@ -121,15 +118,15 @@ body {
 }
 #scoreCardContainer {
     padding: 10px;
-    float: none;
     overflow: auto;
 }
 #scoreCard {
     width: 90%;
-    overflow:hidden;
-    padding: 10px;
+    overflow:auto;
     position: relative;
-    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
 }
 #outCol {
     height: auto;
@@ -153,7 +150,6 @@ body {
     font-family: "Milonga",cursive;
     box-shadow: 1px 2px 30px black;
     overflow: hidden;
-    padding: 20px;
 }
 
 #courseName {
@@ -218,6 +214,7 @@ body {
     font-size: 20px;
     padding: 20px;
     margin: 5px;
+    border: solid 1px ghostWhite;
 }
 
 #addPlayerBtn {
@@ -247,4 +244,11 @@ body {
     width: auto;
     padding: 15px;
     border-bottom: solid 5px white;
+}
+
+#map {
+    margin: auto;
+    height: 600px;
+    width: 600px;
+    border: solid 2px black;
 }
