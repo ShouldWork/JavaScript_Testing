@@ -61,7 +61,7 @@ var xhttpPost = new XMLHttpRequest();
 //Cali
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
-var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 100};
+var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 10};
 
 function loadMe() {
     $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
@@ -99,6 +99,8 @@ function getCourseInfo(id) {
 
 function buildPage(numHoles) {
     "use strict";
+    vertText("Map");
+    document.getElementById("slideButton").style.display = "block"
     var choiceTitle = document.getElementById('selectCourse');
     document.getElementById('courseInfo').removeChild(choiceTitle);
     document.getElementById('doDiv').style.display = 'none';
@@ -152,6 +154,7 @@ function buildPage(numHoles) {
     }
     setTimeout(function () {
             document.getElementById('addPlayerBtn').click();
+            getMapCoord();
         },250
     );
 
@@ -236,4 +239,86 @@ function updateOut(value,row) {
     } else {
         document.getElementById(row).innerHTML = value;
     }
+}
+
+
+// Slide stuff 
+
+function vertText(textVert){
+    document.getElementById("btnTxt").innerHTML ='';
+    for (var p = 0; p < textVert.length; p++) {
+        document.getElementById("btnTxt").innerHTML += "<span>" + textVert[p] + "</span>"
+    }
+}
+function slideBtn() {
+    secondSlidePos = $('#secondSlide').position();
+    if (secondSlidePos.left > 0) {
+      //  document.getElementById("slideButton").style.right = "95%";
+        document.getElementById("firstSlide").style.left = "100%";
+        document.getElementById("firstSlide").style.opacity = "0";
+        document.getElementById("secondSlide").style.left = "0";
+        document.getElementById("secondSlide").style.opacity ="1"
+        vertText("Course")
+    } else {
+    //    document.getElementById("slideButton").style.right = '0';
+        document.getElementById("firstSlide").style.left = '0';
+        document.getElementById("secondSlide").style.opacity ="0"
+        document.getElementById("secondSlide").style.left = "100%";
+        document.getElementById("firstSlide").style.opacity = "1";
+        vertText("Map")
+    }           
+}
+
+
+// Google Map API stuff
+
+var lat = 40.397;
+var lng = -111.863;
+var map;
+function initMap(lat,lng) {
+    // Create a map object and specify the DOM element for display.
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.397, lng: -111.863},
+        scrollwheel: true,
+        zoom: 18,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    });
+
+}
+
+
+var xhttpMap= new XMLHttpRequest();
+var holeLocations = [];
+
+function getMapCoord() {
+    
+            for (var g in testCourse.course.holes) {
+               // console.log(testCourse.course.holes[g].green_location.lat);
+                holeLocations.push({greenLat: testCourse.course.holes[g].green_location.lat, greenLng: testCourse.course.holes[g].green_location.lng,teeLat: testCourse.course.holes[g].tee_boxes[0].location.lat,teeLng: testCourse.course.holes[g].tee_boxes[0].location.lng});
+              //  console.log(holeLocations[g].lat + " & " + holeLocations[g].lng);
+                document.getElementById("column" + g).setAttribute('onclick','reCenterMap(' + holeLocations[g].greenLat + ',' + holeLocations[g].greenLng + ')');
+                console.log("Green: " + holeLocations[g].greenLat + " & " + holeLocations[g].greenLng + "\nTee: " + holeLocations[g].teeLat + " & " + holeLocations[g].teeLng);
+
+            }
+            //var greenLat = testCourse.course.holes[0].green_location.lat;
+            //var greenLng = testCourse.course.holes[0].green_location.lng;
+            var courseLat = testCourse.course.location.lat;
+            var courseLng = testCourse.course.location.lng;
+            //console.log("Green Lat: " + greenLat + "\nWhich is a " + typeof greenLat + "\nGreen Lng: " + greenLng + "\nWhich is a " + typeof greenLng);
+            //get_courses(local_obj);
+            //map.setCenter({lat: -34, lng: 151});
+            map.setCenter({lat: courseLat,lng: courseLng});
+           // initMap(courseLat,courseLng);
+           reCenterMap(courseLat,courseLng);
+}
+
+
+function reCenterMap(lat,lng) {
+    "use strict";
+    map.setCenter({lat: lat,lng: lng});
+    var marker = new google.maps.Marker({
+        position: {lat: lat,lng: lng},
+        map: map,
+        title: 'Hello World!'
+    });
 }
