@@ -253,14 +253,16 @@ function vertText(textVert){
 function slideBtn() {
     secondSlidePos = $('#secondSlide').position();
     if (secondSlidePos.left > 0) {
-      //  document.getElementById("slideButton").style.right = "95%";
+        document.getElementById("slideButton").style.paddingTop = '20px';
+        document.getElementById("slideButton").style.height = "75%";
         document.getElementById("firstSlide").style.left = "100%";
         document.getElementById("firstSlide").style.opacity = "0";
         document.getElementById("secondSlide").style.left = "0";
         document.getElementById("secondSlide").style.opacity ="1"
         vertText("Course")
     } else {
-    //    document.getElementById("slideButton").style.right = '0';
+        document.getElementById("slideButton").style.paddingTop = '50px';
+        document.getElementById("slideButton").style.height = '100%';
         document.getElementById("firstSlide").style.left = '0';
         document.getElementById("secondSlide").style.opacity ="0"
         document.getElementById("secondSlide").style.left = "100%";
