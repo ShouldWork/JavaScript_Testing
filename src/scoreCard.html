@@ -15,22 +15,32 @@
 </div>
 <div class="container">
     <div class="row">
-        <div id='courseInfo'>
-            <div id="doDiv">Select a Course</div>
-            <div id="selectCourse"></div>
-            <div id="courseName"></div>
-            <div class="contactInfo">
-                <div id='theCity'></div>
-                <div id="phoneNumber"></div>
-                <div id="site"><a href="" id="websiteLink"></a></div>
+        <div id="mainBanner">
+            <div id="slideButton" onclick="slideBtn()">
+                <div id="btnTxt"></div>
+            </div>
+            <div id="firstSlide">
+                <div id='courseInfo'> <!-- left -->
+                    <div id="doDiv">Select a Course</div>
+                    <div id="selectCourse"></div>
+                    <div id="courseName"></div>
+                    <div class="contactInfo">
+                        <div id='theCity'></div>
+                        <div id="phoneNumber"></div>
+                        <div id="site"><a href="" id="websiteLink"></a></div>
+                    </div>
+              </div>
+            </div>
+            <div id="secondSlide">
+                <div id="map"></div> <!-- Right -->
             </div>
         </div>
-
         <div id="scoreCardContainer">
             <div id="scoreCard"></div>
         </div>
         <button id="addPlayerBtn" type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" onclick="addTeeBoxes()">Add Player</button>
     </div>
+   
 
     <!-- My Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -64,6 +74,7 @@
         <p class="main">Aesthetics score card<p>
         <p class="secondary">By Blake Locke</p>
     </div>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYX6y-RZJ7AshNcPrjlUghJRZzbH8DqEM&callback=initMap"
+            async defer></script>
 </body>
 </html>
