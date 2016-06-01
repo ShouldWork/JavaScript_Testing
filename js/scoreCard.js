@@ -82,9 +82,6 @@ function loadMe() {
 };
 
 
-
-
-
 function getCourseInfo(id) {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -100,60 +97,68 @@ function getCourseInfo(id) {
 function buildPage(numHoles) {
     "use strict";
     vertText("Map");
-    document.getElementById("slideButton").style.display = "block"
-    var choiceTitle = document.getElementById('selectCourse');
-    document.getElementById('courseInfo').removeChild(choiceTitle);
-    document.getElementById('doDiv').style.display = 'none';
-    document.getElementById('addPlayerBtn').style.display = 'block';
-    document.getElementById('courseName').innerHTML = testCourse.course.name;
-    document.getElementById('theCity').innerHTML += testCourse.course.city + ", " + testCourse.course.state_or_province;
-    document.getElementById('phoneNumber').innerHTML += testCourse.course.phone;
-    document.getElementById('websiteLink').innerHTML += testCourse.course.name;
-    document.getElementById('websiteLink').setAttribute('href',testCourse.course.website);
+    $("#slideButton").css("display","block");
+    $("#slideWeather").css("display","block").on('click', function() {
+        $("#weatherContainer").slideToggle();
+    });
+    $("#courseContainer").slideUp();
+    $("#courseStats").css("display","block").on('click', function() {
+        $("#courseContainer").slideToggle();
+    }).on('click',courseStats());
+    getMyInfo(testCourse.course.zip_code.substr(0,5));
+    $("#weatherContainer").css("display","block").slideUp();
+    $("#selectCourse").remove();
+    $("#doDiv").css("display","none");
+    $("#addPlayerBtn").css("display","block");
+    $("#courseName").html(testCourse.course.name);
+
+    $("#theCity").append(testCourse.course.city + ", " + testCourse.course.state_or_province);
+    $("#phoneNumber").append(testCourse.course.phone);
+    $("#site a").attr("href",testCourse.course.website).text(testCourse.course.name);
     var playerCol = document.createElement('div');
-    document.getElementById('scoreCard').appendChild(playerCol);
-    playerCol.setAttribute('class','playerCol');
-    playerCol.setAttribute('id','playerCol');
+        $("#scoreCard").append(playerCol);
+        playerCol.setAttribute('id','playerCol');
+        $("#playerCol").attr("class","playerCol");
     var holeRowTitle = document.createElement('span');
-    document.getElementById('playerCol').appendChild(holeRowTitle);
-    holeRowTitle.setAttribute('class','playerCell');
-    holeRowTitle.innerHTML = 'Hole';
+        $("#playerCol").append(holeRowTitle);
+        holeRowTitle.setAttribute('class','playerCell');
+        holeRowTitle.innerHTML = 'Hole';
     var parRowTitle = document.createElement('span');
-    document.getElementById('playerCol').appendChild(parRowTitle);
-    parRowTitle.setAttribute('class','playerCell');
-    parRowTitle.innerHTML = 'Par';
+        $("#playerCol").append(parRowTitle);
+        parRowTitle.setAttribute('class','playerCell');
+        parRowTitle.innerHTML = 'Par';
     for (var j = 0; j < numHoles; j++) {
         if (j == 9){
             var outCell = document.createElement('div');
             var blankOutCell = document.createElement('div');
             var outCol = document.createElement('div');
             document.getElementById('scoreCard').appendChild(outCol);
-            outCol.setAttribute('class', 'holeCol');
-            outCol.setAttribute('id', 'outCol');
+                outCol.setAttribute('class', 'holeCol');
+                outCol.setAttribute('id', 'outCol');
             document.getElementById('outCol').appendChild(outCell);
-            outCell.innerHTML = 'Out';
-            outCell.setAttribute('class','outCell');
+                outCell.innerHTML = 'Out';
+                outCell.setAttribute('class','outCell');
             document.getElementById('outCol').appendChild(blankOutCell);
-            blankOutCell.setAttribute('id' , 'blankOut');
-            blankOutCell.setAttribute('class' , 'outCell');
-            blankOutCell.innerHTML = '31';
+                blankOutCell.setAttribute('id' , 'blankOut');
+                blankOutCell.setAttribute('class' , 'outCell');
+                blankOutCell.innerHTML = '31';
         }
         var holeColTitleRow = document.createElement('span');
         var holeColParRow = document.createElement('span');
         var holeCol = document.createElement('div');
         var holeColId = 'column' + j;
         document.getElementById('scoreCard').appendChild(holeCol);
-        holeCol.setAttribute('class', 'holeCol');
-        holeCol.setAttribute('id', holeColId);
+            holeCol.setAttribute('class', 'holeCol');
+            holeCol.setAttribute('id', holeColId);
         document.getElementById(holeColId).appendChild(holeColTitleRow);
-        holeColTitleRow.setAttribute('class', 'holeColTitleRow');
-        holeColTitleRow.innerHTML = j + 1;
+            holeColTitleRow.setAttribute('class', 'holeColTitleRow');
+            holeColTitleRow.innerHTML = j + 1;
         document.getElementById(holeColId).appendChild(holeColParRow);
-        holeColParRow.setAttribute( 'class' , 'parRowPro');
-        holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
+            holeColParRow.setAttribute( 'class' , 'parRowPro');
+            holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
     }
     setTimeout(function () {
-            document.getElementById('addPlayerBtn').click();
+         //   document.getElementById('addPlayerBtn').click();
             getMapCoord();
             //getMyInfo(84663);
         },250
@@ -303,15 +308,9 @@ function getMapCoord() {
         console.log("Green: " + holeLocations[g].greenLat + " & " + holeLocations[g].greenLng + "\nTee: " + holeLocations[g].teeLat + " & " + holeLocations[g].teeLng);
 
     }
-    //var greenLat = testCourse.course.holes[0].green_location.lat;
-    //var greenLng = testCourse.course.holes[0].green_location.lng;
     var courseLat = testCourse.course.location.lat;
     var courseLng = testCourse.course.location.lng;
-    //console.log("Green Lat: " + greenLat + "\nWhich is a " + typeof greenLat + "\nGreen Lng: " + greenLng + "\nWhich is a " + typeof greenLng);
-    //get_courses(local_obj);
-    //map.setCenter({lat: -34, lng: 151});
     map.setCenter({lat: courseLat,lng: courseLng});
-    // initMap(courseLat,courseLng);
     reCenterMap(courseLat,courseLng);
 }
 
@@ -330,23 +329,67 @@ function reCenterMap(lat,lng) {
 
 //Weather Stuff
 
-/*
-//weather API Call
+//Weather Stuff
 
+//weather API Call
 var xhttpWeather;
+var weatherObject = {};
+var weatherIcon = "../src/images/svg/";
+
+function courseStats() {
+    "use strict";
+    for (var g in testCourse.course) {
+        var line = document.createElement("p");
+        document.getElementById('courseContainer').appendChild(line);
+        line.innerHTML += testCourse.course[g];
+    }
+}
+
 function getMyInfo(value) {
     xhttpWeather = new XMLHttpRequest();
     xhttpWeather.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttpWeather.status == 200) {
-            var object = JSON.parse(xhttpWeather.responseText);
-            document.getElementById("site").innerHTML += object.name;
-            document.getElementById("site").innerHTML += object.weather[0].description;
-            document.getElementById("site").src += "http://openweathermap.org/img/w/" + object.weather[0].icon + ".png";
-
+        if (xhttpWeather.readyState == 4 && xhttpWeather.status == 200) {
+            weatherObject = JSON.parse(xhttpWeather.responseText);
+            console.log(weatherObject);
+            clearWeather();
+            $("#cityName").append(weatherObject.name);
+            var temperature = weatherObject.main.temp;
+            $("#temp").append(temperature.toFixed(0));
+            $("#temp img").first().attr("src","../src/images/svg/farenheit.svg");
+            $("#wind").html(weatherObject.wind.speed);
+            $("#icon img").first().attr("src", weatherIcon + weatherObject.weather[0].icon + ".svg");
         }
+
     };
-    xhttpWeather.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip="+ value + ",us&appid=a4e12bc54b22227bd03bb03c867242d7", true);
+    xhttpWeather.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip="+ value + ",us&appid=a4e12bc54b22227bd03bb03c867242d7&units=imperial", true);
     xhttpWeather.send();
 };
 
-*/
+function clearWeather() {
+    "use strict";
+    $("#cityName").html("");
+    $("#temp").html("");
+    $("#wind").html("");
+    $("#icon img").first().attr('src','');
+}
+
+function newZip () {
+    "use strict";
+    var thisZip = $("#zipCode").val();
+    getMyInfo(thisZip);
+};
+//http://api.openweathermap.org/data/2.5/weather?q=London&mode=xml&units=imperial
+//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
+/*
+
+ Clear Sky 01d
+ Few Clouds 02d
+ Scattered Clouds 03d
+ Broken Clouds 04d
+ Shower Rain 09d
+ Rain 10d
+ Thunderstorm 11d
+ Snow 13d
+ Mist 50d
+
+ */

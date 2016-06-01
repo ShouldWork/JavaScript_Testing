@@ -1,0 +1,49 @@
+#weatherContainer {
+    height: 400px;
+    width: 300px;
+    margin: auto;
+    background-color: rgba(255,255,255,0.80);
+    border: 1px solid white;
+    overflow: hidden;
+}
+
+#temp , #wind , #icon , #cityName , #slideWeather {
+    border: 1px solid white;
+    background-color: rgba(0,0,0,0.70);
+    font-family: "Milonga", cursive;
+    font-size: 15px;
+    height: auto;
+    width: auto;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 1px black;
+    padding: 5px;
+}
+
+#temp {
+    float: left;
+}
+
+#temp img {
+    font-size: 5px;
+    height: 10px;
+    float: right;
+}
+
+#wind {
+    float: right;
+}
+
+#icon {
+    font-size: 20px;
+    background-color: skyblue;
+}
+
+#cityName {
+    font-size: 25px;
+}
+
+#slideWeather {
+    margin: auto;
+    width: 300px;
+}

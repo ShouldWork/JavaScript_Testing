@@ -313,6 +313,67 @@ body {
     right: 10px;
 }
 
+#weatherContainer , #courseContainer{
+    position: absolute;
+    width: 300px;
+    background-color: rgba(255,255,255,0.80);
+    border: 1px solid white;
+    overflow: hidden;
+    display: none;
+}
+
+#courseContainer {
+    font-size: 10px;
+
+}
+#temp , #wind , #icon , #cityName , #slideWeather , #courseStats {
+    border: 1px solid white;
+    background-color: rgba(0,0,0,0.70);
+    font-family: "Milonga", cursive;
+    font-size: 15px;
+    height: auto;
+    width: auto;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 1px black;
+    padding: 5px;
+}
+
+#temp {
+    float: left;
+}
+
+#temp img {
+    font-size: 5px;
+    height: 10px;
+    float: right;
+}
+
+#wind {
+    float: right;
+}
+
+#icon {
+    font-size: 20px;
+    background-color: skyblue;
+}
+
+#cityName {
+    font-size: 25px;
+}
+
+#slideWeather {
+    width: 300px;
+    display: none;
+    cursor: pointer;
+}
+
+#courseStats {
+    width: 300px;
+    display: none;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 500px) {
     #scoreCardContainer {
         justify-content: flex-start;
