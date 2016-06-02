@@ -61,7 +61,7 @@ var xhttpPost = new XMLHttpRequest();
 //Cali
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
-var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 10};
+var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 100};
 
 function loadMe() {
     $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
@@ -76,7 +76,7 @@ function loadMe() {
             document.getElementById('selectCourse').appendChild(thisCourse);
             //console.log(closeCourses.courses[p].name);
         }
-        document.getElementById('doDiv').style.display = 'block';
+       // document.getElementById('doDiv').style.display = 'block';
 
     });
 };
@@ -99,16 +99,18 @@ function buildPage(numHoles) {
     vertText("Map");
     $("#slideButton").css("display","block");
     $("#slideWeather").css("display","block").on('click', function() {
+        $("#courseContainer").slideUp();
         $("#weatherContainer").slideToggle();
     });
     $("#courseContainer").slideUp();
     $("#courseStats").css("display","block").on('click', function() {
+        $("#weatherContainer").slideUp();
         $("#courseContainer").slideToggle();
     }).on('click',courseStats());
     getMyInfo(testCourse.course.zip_code.substr(0,5));
     $("#weatherContainer").css("display","block").slideUp();
     $("#selectCourse").remove();
-    $("#doDiv").css("display","none");
+    //$("#doDiv").css("display","none");
     $("#addPlayerBtn").css("display","block");
     $("#courseName").html(testCourse.course.name);
 
@@ -172,7 +174,7 @@ var players = [];
 function addTeeBoxes(){
     for (var t in testCourse.course.holes[0].tee_boxes) {
         if (!testCourse.course.holes[0].tee_boxes[t].tee_type.includes("auto"))
-            document.getElementById('teeDrop').innerHTML += '<option value=\"' + t + '\">' + testCourse.course.holes[0].tee_boxes[t].tee_type.charAt(0).toUpperCase() + testCourse.course.holes[0].tee_boxes[t].tee_type.slice(1) + '</option>'
+            document.getElementById('teeDrop').innerHTML += '<option value=\"' + t + '\">' + toCapitalize(testCourse.course.tee_types[t].tee_type) + '</option>'
     }
 
 }
@@ -187,13 +189,16 @@ function addPlayer(){
     document.getElementById('playerCol').appendChild(playerName);
     playerName.setAttribute('class','playerCell');
     playerName.innerHTML = players[numPlayers - 1].name;
+    if (testCourse.course.fees != undefined) {
+        $("#courseInfo").append("<img src='../src/images/svg/cash.svg' id='cashButton'>");;
+    }
     for (var k = 0; k < testCourse.course.hole_count; k++) {
         if (k == 9){
             var outCell = document.createElement('div');
             document.getElementById('outCol').appendChild(outCell);
-            outCell.setAttribute('class' , 'outCell');
-            outCell.setAttribute('id' , 'player' + numPlayers + 'out');
-            outCell.innerHTML = '0';
+                outCell.setAttribute('class' , 'outCell');
+                outCell.setAttribute('id' , 'player' + numPlayers + 'out');
+                outCell.innerHTML = '0';
         }
         var playerLevelPar = document.createElement('div');
         var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
@@ -247,6 +252,11 @@ function updateOut(value,row) {
     }
 }
 
+function toCapitalize(v) {
+    "use strict";
+    return v.charAt(0).toUpperCase() + v.slice(1);
+}
+
 
 // Slide stuff
 
@@ -264,16 +274,16 @@ function slideBtn() {
         document.getElementById("firstSlide").style.left = "100%";
         document.getElementById("firstSlide").style.opacity = "0";
         document.getElementById("secondSlide").style.left = "0";
-        document.getElementById("secondSlide").style.opacity ="1"
-        vertText("Course")
+        document.getElementById("secondSlide").style.opacity ="1";
+        vertText("Course");
     } else {
         document.getElementById("slideButton").style.paddingTop = '50px';
         document.getElementById("slideButton").style.height = '100%';
         document.getElementById("firstSlide").style.left = '0';
-        document.getElementById("secondSlide").style.opacity ="0"
+        document.getElementById("secondSlide").style.opacity ="0";
         document.getElementById("secondSlide").style.left = "100%";
         document.getElementById("firstSlide").style.opacity = "1";
-        vertText("Map")
+        vertText("Map");
     }
 }
 
@@ -338,26 +348,38 @@ var weatherIcon = "../src/images/svg/";
 
 function courseStats() {
     "use strict";
-    for (var g in testCourse.course) {
-        var line = document.createElement("p");
-        document.getElementById('courseContainer').appendChild(line);
-        line.innerHTML += testCourse.course[g];
-    }
-}
+    var addIt = document.getElementById('courseContainer');
+    var line = document.createElement("span");
+    line.setAttribute('id','statsList');
+    var cc = testCourse.course;
+    addIt.appendChild(line);
+    document.getElementById('statsList').innerHTML += "somethin";
+        $("#statsList").html("Membership: " + cc.membership_type + "<br>");
+        $("#statsList").append("Holes: " + cc.hole_count + "<br>");
+        $("#statsList").append("Global Rank: " + cc.global_rank + "<br>");
+        $("#statsList").append("Local Rank: " + cc.local_rank + "<br>");
+        $("#statsList").append("Tee Types:<br>");
+        for (var g = 0; g < cc.tee_types.length; g++) {
+            $("#statsList").append(toCapitalize(cc.tee_types[g].tee_type) + "<br>");
+        };
+        if (cc.fees != undefined) {
+            $("#statsList").append("Fees: " + cc.fees);
+        };
+};
 
 function getMyInfo(value) {
     xhttpWeather = new XMLHttpRequest();
     xhttpWeather.onreadystatechange = function() {
         if (xhttpWeather.readyState == 4 && xhttpWeather.status == 200) {
             weatherObject = JSON.parse(xhttpWeather.responseText);
-            console.log(weatherObject);
             clearWeather();
             $("#cityName").append(weatherObject.name);
             var temperature = weatherObject.main.temp;
             $("#temp").append(temperature.toFixed(0));
             $("#temp img").first().attr("src","../src/images/svg/farenheit.svg");
-            $("#wind").html(weatherObject.wind.speed);
+            $("#wind").append(weatherObject.wind.speed);
             $("#icon img").first().attr("src", weatherIcon + weatherObject.weather[0].icon + ".svg");
+            $("#weatherDesc").html(toCapitalize(weatherObject.weather[0].description));
         }
 
     };
@@ -371,7 +393,7 @@ function clearWeather() {
     $("#temp").html("");
     $("#wind").html("");
     $("#icon img").first().attr('src','');
-}
+};
 
 function newZip () {
     "use strict";
