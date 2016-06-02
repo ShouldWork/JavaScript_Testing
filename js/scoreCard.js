@@ -354,7 +354,7 @@ function courseStats() {
     var cc = testCourse.course;
     addIt.appendChild(line);
     document.getElementById('statsList').innerHTML += "somethin";
-        $("#statsList").html("Membership: " + cc.membership_type + "<br>");
+        $("#statsList").html("Membership: " + toCapitalize(cc.membership_type) + "<br>");
         $("#statsList").append("Holes: " + cc.hole_count + "<br>");
         $("#statsList").append("Global Rank: " + cc.global_rank + "<br>");
         $("#statsList").append("Local Rank: " + cc.local_rank + "<br>");
@@ -375,9 +375,17 @@ function getMyInfo(value) {
             clearWeather();
             $("#cityName").append(weatherObject.name);
             var temperature = weatherObject.main.temp;
+            $("#humidity").append(weatherObject.main.humidity);
             $("#temp").append(temperature.toFixed(0));
             $("#temp img").first().attr("src","../src/images/svg/farenheit.svg");
             $("#wind").append(weatherObject.wind.speed);
+            if (weatherObject.wind.speed <= 3) {
+                $("#wind img").attr('src','../src/images/svg/wind-3.svg')
+            } else if (weatherObject.wind.speed > 3 && weatherObject.wind.speed <= 6) {
+                $("#wind img").attr('src','../src/images/svg/wind-4.svg')
+            } else if (weatherObject.wind.speed > 6) {
+                $("#wind img").attr('src','../src/images/svg/weather-1.svg')
+            }
             $("#icon img").first().attr("src", weatherIcon + weatherObject.weather[0].icon + ".svg");
             $("#weatherDesc").html(toCapitalize(weatherObject.weather[0].description));
         }
@@ -391,7 +399,7 @@ function clearWeather() {
     "use strict";
     $("#cityName").html("");
     $("#temp").html("");
-    $("#wind").html("");
+    //$("#wind").html("");
     $("#icon img").first().attr('src','');
 };
 

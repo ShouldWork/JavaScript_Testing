@@ -314,7 +314,7 @@ body {
 
 #weatherContainer , #courseContainer{
     position: absolute;
-    width: 300px;
+    width: 320px;
     background-color: rgba(255,255,255,0.80);
     border: 1px solid white;
     overflow: hidden;
@@ -327,7 +327,7 @@ body {
     background-color: transparent;
     border: none;
 }
-#temp , #wind , #icon , #cityName , #slideWeather , #courseStats {
+#temp , #wind , #icon , #cityName , #slideWeather , #courseStats , #humidity {
     border: 1px solid white;
     background-color: rgba(0,0,0,0.70);
     font-family: "Milonga", cursive;
@@ -352,14 +352,27 @@ body {
 #temp:after {
     content: "\00b0"
 }
+#humidity {
+    float: left;
+}
+
+#humidity:after {
+    content: "%"
+}
 
 #wind {
     float: right;
 }
 
+#wind img {
+    height: 20px;
+    float:left;
+    padding-right: 4px;
+}
 #icon {
     font-size: 20px;
     background-color: transparent;
+    border: none;
 }
 
 #cityName {
