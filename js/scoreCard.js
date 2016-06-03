@@ -62,12 +62,19 @@ var xhttpPost = new XMLHttpRequest();
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
 var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 100};
-
-function loadMe() {
+$(document).ready(function () {
     $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
         closeCourses = JSON.parse(data);
         for (var p in closeCourses.courses){
             var thisCourse = document.createElement('div');
+            var a = document.getElementById("selectCourse");
+            if (a == null) {
+                console.log(a);
+                var selectCourse = document.createElement('div');
+                selectCourse.setAttribute("id","selectCourse");
+                document.getElementById("courseInfo").appendChild(selectCourse);
+                console.log(document.getElementById("selectCourse"))
+            }
             thisCourse.setAttribute('onclick','getCourseInfo(this.id)');
             thisCourse.setAttribute('id',closeCourses.courses[p].id);
             thisCourse.setAttribute('class','thisCourse');
@@ -76,17 +83,17 @@ function loadMe() {
             document.getElementById('selectCourse').appendChild(thisCourse);
             //console.log(closeCourses.courses[p].name);
         }
-       // document.getElementById('doDiv').style.display = 'block';
+        // document.getElementById('doDiv').style.display = 'block';
 
     });
-};
-
-
+});
+var numHoles;
 function getCourseInfo(id) {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             testCourse = JSON.parse(xhttp.responseText);
-            buildPage(testCourse.course.hole_count);
+            numHoles = testCourse.course.hole_count;
+            buildPage(numHoles);
         }
     };
     xhttp.open("GET","https://golf-courses-api.herokuapp.com/courses/" + id,true);
@@ -98,22 +105,19 @@ function buildPage(numHoles) {
     "use strict";
     vertText("Map");
     $("#slideButton").css("display","block");
-    $("#slideWeather").css("display","block").on('click', function() {
-        $("#courseContainer").slideUp();
+    $("#slideWeather").css("display","block").hover( function() {
         $("#weatherContainer").slideToggle();
     });
     $("#courseContainer").slideUp();
-    $("#courseStats").css("display","block").on('click', function() {
-        $("#weatherContainer").slideUp();
+    $("#courseStats").css("display","block").hover( function() {
         $("#courseContainer").slideToggle();
     }).on('click',courseStats());
     getMyInfo(testCourse.course.zip_code.substr(0,5));
-    $("#weatherContainer").css("display","block").slideUp();
     $("#selectCourse").remove();
     //$("#doDiv").css("display","none");
     $("#addPlayerBtn").css("display","block");
     $("#courseName").html(testCourse.course.name);
-
+    $("#newCourse").css("display","block");
     $("#theCity").append(testCourse.course.city + ", " + testCourse.course.state_or_province);
     $("#phoneNumber").append(testCourse.course.phone);
     $("#site a").attr("href",testCourse.course.website).text(testCourse.course.name);
@@ -135,15 +139,15 @@ function buildPage(numHoles) {
             var blankOutCell = document.createElement('div');
             var outCol = document.createElement('div');
             document.getElementById('scoreCard').appendChild(outCol);
-                outCol.setAttribute('class', 'holeCol');
-                outCol.setAttribute('id', 'outCol');
+            outCol.setAttribute('class', 'holeCol');
+            outCol.setAttribute('id', 'outCol');
             document.getElementById('outCol').appendChild(outCell);
-                outCell.innerHTML = 'Out';
-                outCell.setAttribute('class','outCell');
+            outCell.innerHTML = 'Out';
+            outCell.setAttribute('class','outCell');
             document.getElementById('outCol').appendChild(blankOutCell);
-                blankOutCell.setAttribute('id' , 'blankOut');
-                blankOutCell.setAttribute('class' , 'outCell');
-                blankOutCell.innerHTML = '31';
+            blankOutCell.setAttribute('id' , 'blankOut');
+            blankOutCell.setAttribute('class' , 'outCell');
+            blankOutCell.innerHTML = '31';
         }
         var holeColTitleRow = document.createElement('span');
         var holeColParRow = document.createElement('span');
@@ -160,27 +164,33 @@ function buildPage(numHoles) {
             holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
     }
     setTimeout(function () {
-         //   document.getElementById('addPlayerBtn').click();
             getMapCoord();
-            //getMyInfo(84663);
         },250
     );
-
-
 }
 var numPlayers = 0;
 var players = [];
 
 function addTeeBoxes(){
+    //testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type
     for (var t in testCourse.course.holes[0].tee_boxes) {
-        if (!testCourse.course.holes[0].tee_boxes[t].tee_type.includes("auto"))
-            document.getElementById('teeDrop').innerHTML += '<option value=\"' + t + '\">' + toCapitalize(testCourse.course.tee_types[t].tee_type) + '</option>'
+        var teeType = testCourse.course.holes[t].tee_boxes[t].tee_type;
+        if (!teeType.includes("auto")) {
+            var teeBox = toCapitalize(teeType);
+            document.getElementById('teeDrop').innerHTML += '<option value=\"' + t + '\">' + teeBox + '</option>';
+            //console.log("tee: " + teeBox + " option: " + t);
+        }
     }
-
 }
+
+function newCourse() {
+    window.location.reload();
+}
+
 function addPlayer(){
     numPlayers ++;
-    var thisPlayer = "player" + numPlayers + "out";
+    var thisPlayerOut = "player" + numPlayers + "out";
+    var thisPlayer = "player" + numPlayers;
     var newName = document.getElementById('playerName').value;
     var level = document.getElementById('teeDrop').value;
     var handicap = document.getElementById('handicap').value;
@@ -189,16 +199,13 @@ function addPlayer(){
     document.getElementById('playerCol').appendChild(playerName);
     playerName.setAttribute('class','playerCell');
     playerName.innerHTML = players[numPlayers - 1].name;
-    if (testCourse.course.fees != undefined) {
-        $("#courseInfo").append("<img src='../src/images/svg/cash.svg' id='cashButton'>");;
-    }
     for (var k = 0; k < testCourse.course.hole_count; k++) {
         if (k == 9){
             var outCell = document.createElement('div');
             document.getElementById('outCol').appendChild(outCell);
-                outCell.setAttribute('class' , 'outCell');
-                outCell.setAttribute('id' , 'player' + numPlayers + 'out');
-                outCell.innerHTML = '0';
+            outCell.setAttribute('class' , 'outCell');
+            outCell.setAttribute('id' , 'player' + numPlayers + 'out');
+            outCell.innerHTML = '0';
         }
         var playerLevelPar = document.createElement('div');
         var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
@@ -206,6 +213,8 @@ function addPlayer(){
         var scoreParContainerId = 'player' + numPlayers + 'container' + k;
         var holeScoreRow = document.createElement('input');
         var holeScoreRowId = 'player' + numPlayers + 'scoreCol' + k;
+        var teeType = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type;
+      //  var teeBox = testCourse.course.tee_types[t].tee_type;
         document.getElementById('column' + k).appendChild(scoreParContainer);
         scoreParContainer.setAttribute('class','scoreParContainer');
         scoreParContainer.setAttribute('id',scoreParContainerId);
@@ -218,15 +227,14 @@ function addPlayer(){
         }
         scoreParContainer.style.background = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color;
         document.getElementById(scoreParContainerId).appendChild(playerLevelPar);
-        playerLevelPar.innerHTML = playerPar;
-        playerLevelPar.setAttribute('class','playerPar');
-
+            playerLevelPar.innerHTML = playerPar;
+            playerLevelPar.setAttribute('class','playerPar');
         document.getElementById(scoreParContainerId).appendChild(holeScoreRow);
-        holeScoreRow.setAttribute('id', holeScoreRowId);
-        holeScoreRow.setAttribute('class', 'holeScoreRow');
-        holeScoreRow.setAttribute('onchange','updateOut(this.value,\"' + thisPlayer + '\")');
-        if (testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type == 'men') {
-            console.log(testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type);
+            holeScoreRow.setAttribute('id', holeScoreRowId);
+            holeScoreRow.setAttribute('class', 'holeScoreRow');
+            holeScoreRow.setAttribute('onkeyup','updateOut(\"' + thisPlayer + '\",\"' + thisPlayerOut + '\")');
+        if (teeType == 'men') {
+            console.log(teeType);
             holeScoreRow.style.color = 'black';
             holeScoreRow.style.borderLeft = 'solid 1px black';
         } else {
@@ -241,16 +249,18 @@ function addPlayer(){
     document.getElementById('handicap').value = '';
 }
 
-function updateOut(value,row) {
+function updateOut(player,row) {
     "use strict";
-    console.log(row);
-    var inputValue = document.getElementById(row).innerHTML;
-    if (inputValue !=="") {
-        document.getElementById(row).innerHTML = Number(value) + Number(inputValue);
-    } else {
-        document.getElementById(row).innerHTML = value;
+    var outScore = 0;
+    for (var pt = 0; pt < numHoles; pt++) {
+        var ptc = player + "scoreCol" + pt;
+        var score = Number(document.getElementById(ptc).value);
+        if (score != '') {
+            outScore += score;
+        }
     }
-}
+    document.getElementById(row).innerHTML = outScore;
+};
 
 function toCapitalize(v) {
     "use strict";
@@ -354,17 +364,17 @@ function courseStats() {
     var cc = testCourse.course;
     addIt.appendChild(line);
     document.getElementById('statsList').innerHTML += "somethin";
-        $("#statsList").html("Membership: " + toCapitalize(cc.membership_type) + "<br>");
-        $("#statsList").append("Holes: " + cc.hole_count + "<br>");
-        $("#statsList").append("Global Rank: " + cc.global_rank + "<br>");
-        $("#statsList").append("Local Rank: " + cc.local_rank + "<br>");
-        $("#statsList").append("Tee Types:<br>");
-        for (var g = 0; g < cc.tee_types.length; g++) {
-            $("#statsList").append(toCapitalize(cc.tee_types[g].tee_type) + "<br>");
-        };
-        if (cc.fees != undefined) {
-            $("#statsList").append("Fees: " + cc.fees);
-        };
+    $("#statsList").html("Membership: " + toCapitalize(cc.membership_type) + "<br>");
+    $("#statsList").append("Holes: " + cc.hole_count + "<br>");
+    $("#statsList").append("Global Rank: " + cc.global_rank + "<br>");
+    $("#statsList").append("Local Rank: " + cc.local_rank + "<br>");
+    $("#statsList").append("Tee Types:<br>");
+    for (var g = 0; g < cc.tee_types.length; g++) {
+        $("#statsList").append(toCapitalize(cc.tee_types[g].tee_type) + "<br>");
+    };
+    if (cc.fees != undefined) {
+        $("#statsList").append("Fees: " + cc.fees);
+    };
 };
 
 function getMyInfo(value) {
@@ -372,18 +382,19 @@ function getMyInfo(value) {
     xhttpWeather.onreadystatechange = function() {
         if (xhttpWeather.readyState == 4 && xhttpWeather.status == 200) {
             weatherObject = JSON.parse(xhttpWeather.responseText);
+            var windSpeed = Math.ceil(weatherObject.wind.speed);
             clearWeather();
             $("#cityName").append(weatherObject.name);
             var temperature = weatherObject.main.temp;
             $("#humidity").append(weatherObject.main.humidity);
             $("#temp").append(temperature.toFixed(0));
             $("#temp img").first().attr("src","../src/images/svg/farenheit.svg");
-            $("#wind").append(weatherObject.wind.speed);
-            if (weatherObject.wind.speed <= 3) {
+            $("#wind").append(windSpeed);
+            if (windSpeed > 0 && windSpeed <= 12 ) {
                 $("#wind img").attr('src','../src/images/svg/wind-3.svg')
-            } else if (weatherObject.wind.speed > 3 && weatherObject.wind.speed <= 6) {
+            } else if (windSpeed > 12 && windSpeed <= 18) {
                 $("#wind img").attr('src','../src/images/svg/wind-4.svg')
-            } else if (weatherObject.wind.speed > 6) {
+            } else if (windSpeed > 18) {
                 $("#wind img").attr('src','../src/images/svg/weather-1.svg')
             }
             $("#icon img").first().attr("src", weatherIcon + weatherObject.weather[0].icon + ".svg");

@@ -9,7 +9,7 @@
     <script src="../js/scoreCard.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../css/scoreCardStyles.css">
 </head>
-<body onload="loadMe()" class="overlay">
+<body>
 <div id="background" class="mainBackground"></div>
 <div class="container">
     <div class="row">
@@ -19,8 +19,9 @@
             </div>
             <div id="firstSlide">
                 <div id='courseInfo'> <!-- left -->
-                   <!-- <div id="doDiv">Select a Course</div> -->
-                   <div id="selectCourse"></div>
+                    <!-- <div id="doDiv">Select a Course</div> -->
+                    <div id="selectCourse"></div>
+                    <span id="newCourse" onclick="newCourse()">Courses</span>
                     <div id="slideWeather">
                         <img src="../src/images/svg/01d.svg">
                     </div>
@@ -54,6 +55,7 @@
                 <div id="map"></div> <!-- Right -->
             </div>
         </div>
+
         <div id="scoreCardContainer">
             <div id="scoreCard"></div>
         </div>
