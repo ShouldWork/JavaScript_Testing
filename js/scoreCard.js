@@ -57,36 +57,40 @@
 var testCourse ={};
 var closeCourses={};
 var xhttp = new XMLHttpRequest();
-var xhttpPost = new XMLHttpRequest();
+var response={};
 //Cali
 //var local_obj = {latitude: 38.860573,longitude: -121.529398,radius: 100}
 //Me Utah
 var local_obj = {latitude: 40.4426135,longitude: -111.8631116,radius: 100};
-$(document).ready(function () {
-    $.post("https://golf-courses-api.herokuapp.com/courses",local_obj,function(data,status) {
-        closeCourses = JSON.parse(data);
-        for (var p in closeCourses.courses){
-            var thisCourse = document.createElement('div');
-            var a = document.getElementById("selectCourse");
-            if (a == null) {
-                console.log(a);
-                var selectCourse = document.createElement('div');
-                selectCourse.setAttribute("id","selectCourse");
-                document.getElementById("courseInfo").appendChild(selectCourse);
-                console.log(document.getElementById("selectCourse"))
-            }
-            thisCourse.setAttribute('onclick','getCourseInfo(this.id)');
-            thisCourse.setAttribute('id',closeCourses.courses[p].id);
-            thisCourse.setAttribute('class','thisCourse');
-            thisCourse.style.cursor = 'pointer';
-            thisCourse.innerHTML = closeCourses.courses[p].name;
-            document.getElementById('selectCourse').appendChild(thisCourse);
-            //console.log(closeCourses.courses[p].name);
-        }
-        // document.getElementById('doDiv').style.display = 'block';
 
+$(document).ready(function() {
+    "use strict";
+    $.ajax("https://golf-courses-api.herokuapp.com/courses", {
+        type: "POST",
+        success: function(response){
+            response = JSON.parse(response);
+            for (var p in response.courses){
+                var thisCourse = "<div id='" + response.courses[p].id + "' class='thisCourse' onclick='getCourseInfo(this.id)'>" + response.courses[p].name + "</div>";
+                $("#selectCourse").append(thisCourse);
+
+            }
+            $("#doDiv").show();
+        },
+         error: function (request,errorType,errorMessage){
+            $("#selectCourse").append(errorMessage);
+         },
+         timeout: 3000,
+         beforeSend: function(){
+            $("#selectCourse").append("<img src='../src/images/svg/golfClub.svg' class='is-loading' id='golfLoading'>");
+            $("#golfLoading").animate({"transform": "rotate(360deg"},'fast');
+         },
+         complete: function(){
+            $("#golfLoading").remove();
+         },
+         data: {"latitude": 40.4426135,"longitude": -111.8631116,"radius": 100}
     });
 });
+
 var numHoles;
 function getCourseInfo(id) {
     xhttp.onreadystatechange = function() {
@@ -104,6 +108,7 @@ function getCourseInfo(id) {
 function buildPage(numHoles) {
     "use strict";
     vertText("Map");
+    var scC = $("#scoreCard");
     $("#slideButton").css("display","block");
     $("#slideWeather").css("display","block").hover( function() {
         $("#weatherContainer").slideToggle();
@@ -112,7 +117,8 @@ function buildPage(numHoles) {
     $("#courseStats").css("display","block").hover( function() {
         $("#courseContainer").slideToggle();
     }).on('click',courseStats());
-    getMyInfo(testCourse.course.zip_code.substr(0,5));
+    //getMyInfo(testCourse.course.zip_code.substr(0,5));
+    getMyInfo();
     $("#selectCourse").remove();
     //$("#doDiv").css("display","none");
     $("#addPlayerBtn").css("display","block");
@@ -121,48 +127,31 @@ function buildPage(numHoles) {
     $("#theCity").append(testCourse.course.city + ", " + testCourse.course.state_or_province);
     $("#phoneNumber").append(testCourse.course.phone);
     $("#site a").attr("href",testCourse.course.website).text(testCourse.course.name);
-    var playerCol = document.createElement('div');
-        $("#scoreCard").append(playerCol);
-        playerCol.setAttribute('id','playerCol');
-        $("#playerCol").attr("class","playerCol");
-    var holeRowTitle = document.createElement('span');
+
+    var playerCol = "<div id='playrCol' class='playerCol'></div>";
+        scC.append(playerCol);
+    var holeRowTitle = "<div class='playerCell'>Hole</div>";
         $("#playerCol").append(holeRowTitle);
-        holeRowTitle.setAttribute('class','playerCell');
-        holeRowTitle.innerHTML = 'Hole';
-    var parRowTitle = document.createElement('span');
+    var parRowTitle = "<span class='playerCell'>Par</span>";
         $("#playerCol").append(parRowTitle);
-        parRowTitle.setAttribute('class','playerCell');
-        parRowTitle.innerHTML = 'Par';
-    for (var j = 0; j < numHoles; j++) {
+    for (var j = 0; j < numHoles; j++ ) {
         if (j == 9){
-            var outCell = document.createElement('div');
-            var blankOutCell = document.createElement('div');
-            var outCol = document.createElement('div');
-            document.getElementById('scoreCard').appendChild(outCol);
-            outCol.setAttribute('class', 'holeCol');
-            outCol.setAttribute('id', 'outCol');
-            document.getElementById('outCol').appendChild(outCell);
-            outCell.innerHTML = 'Out';
-            outCell.setAttribute('class','outCell');
-            document.getElementById('outCol').appendChild(blankOutCell);
-            blankOutCell.setAttribute('id' , 'blankOut');
-            blankOutCell.setAttribute('class' , 'outCell');
-            blankOutCell.innerHTML = '31';
+            var outCell = "<div class='outCell'>Out</div>",
+                outCol = "<div class='holeCol' id='outCol'></div>",
+                blankOutCell = "<div id='blankOut' class='outCell'>31</div>";
+            scC.append(outCol);
+            $("#outCol").append(outCell).append(blankOutCell);
         }
-        var holeColTitleRow = document.createElement('span');
-        var holeColParRow = document.createElement('span');
-        var holeCol = document.createElement('div');
-        var holeColId = 'column' + j;
-        document.getElementById('scoreCard').appendChild(holeCol);
-            holeCol.setAttribute('class', 'holeCol');
-            holeCol.setAttribute('id', holeColId);
-        document.getElementById(holeColId).appendChild(holeColTitleRow);
-            holeColTitleRow.setAttribute('class', 'holeColTitleRow');
-            holeColTitleRow.innerHTML = j + 1;
-        document.getElementById(holeColId).appendChild(holeColParRow);
-            holeColParRow.setAttribute( 'class' , 'parRowPro');
-            holeColParRow.innerHTML = testCourse.course.holes[j].tee_boxes[0].par;
+        var holeColTitleRow = "<span class='holeColTitleRow'>" + j + "</span>",
+            holeColId = 'column' + j,
+            holeColParRow = "<span class='parRowPro'>" + testCourse.course.holes[j].tee_boxes[0].par + "</span>",
+            holeCol = "<div id='" + holeColId + "' class='holeCol'></div>";
+        scC.append(holeCol);
+        $("#" + holeColId).append(holeColTitleRow).append(holeColParRow);
     }
+    var totalCol = "<div id='totalColumn' class='holeCol'></div>";
+    $("#totalColumn").append(outCell);
+    scC.append(totalCol);
     setTimeout(function () {
             getMapCoord();
         },250
@@ -189,64 +178,49 @@ function newCourse() {
 
 function addPlayer(){
     numPlayers ++;
-    var thisPlayerOut = "player" + numPlayers + "out";
-    var thisPlayer = "player" + numPlayers;
-    var newName = document.getElementById('playerName').value;
-    var level = document.getElementById('teeDrop').value;
-    var handicap = document.getElementById('handicap').value;
+    var level = $("#teeDrop").val(); //document.getElementById('teeDrop').value ,
     players.push({name: newName, level: level, handicap: handicap});
-    var playerName = document.createElement('span');
-    document.getElementById('playerCol').appendChild(playerName);
-    playerName.setAttribute('class','playerCell');
-    playerName.innerHTML = players[numPlayers - 1].name;
+    var thisPlayerOut = "player" + numPlayers + "out",
+        thisPlayer = "player" + numPlayers,
+        newName = $("#playerName").val(),  // document.getElementById('playerName').value,
+        handicap = $("#handicap").val(), //document.getElementById('handicap').value,
+        playerName ="<span class='playerCell'>" + players[numPlayers -1].name + "</span>";
+
+    $("#playerCol").append(playerName);
     for (var k = 0; k < testCourse.course.hole_count; k++) {
         if (k == 9){
-            var outCell = document.createElement('div');
-            document.getElementById('outCol').appendChild(outCell);
-            outCell.setAttribute('class' , 'outCell');
-            outCell.setAttribute('id' , 'player' + numPlayers + 'out');
-            outCell.innerHTML = '0';
+            var outCell = "<div class='outCell' id='player" + numPlayers + "out'>0</div>";
+            $("#outCol").append(outCell);
         }
-        var playerLevelPar = document.createElement('div');
-        var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards;
-        var scoreParContainer = document.createElement('div');
-        var scoreParContainerId = 'player' + numPlayers + 'container' + k;
-        var holeScoreRow = document.createElement('input');
-        var holeScoreRowId = 'player' + numPlayers + 'scoreCol' + k;
-        var teeType = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type;
-      //  var teeBox = testCourse.course.tee_types[t].tee_type;
-        document.getElementById('column' + k).appendChild(scoreParContainer);
-        scoreParContainer.setAttribute('class','scoreParContainer');
-        scoreParContainer.setAttribute('id',scoreParContainerId);
+        var playerPar = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].yards,
+            playerOut = "player" + numPlayers,
+            playerLevelPar = "<div class='playerPar'>" + playerPar + "</div>",
+            scoreParContainerId = 'player' + numPlayers + 'container' + k,
+            scoreParContainer = "<div class='scoreParContainer' id='" + scoreParContainerId + "'></div>",
+            holeScoreRowId = 'player' + numPlayers + 'scoreCol' + k,
+            teeColor = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color,
+            holeScoreRow = "<input class='holeScoreRow' id='" + holeScoreRowId + "'>",
+            teeType = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type;
+        console.log(teeColor);
+        $("#column" + k).append(scoreParContainer);
         if (testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_type == 'men') {
-            scoreParContainer.style.color = 'black';
-            scoreParContainer.style.border = 'solid 2px black'
+            $("#" + scoreParContainerId).css({"color": "black", "border": "solid 2px black"});
         } else {
-            scoreParContainer.style.color = 'white';
-            scoreParContainer.style.border = 'solid 2px ghostWhite';
+            $("#" + scoreParContainerId).css({"color": "white", "border": "solid 2px ghostWhite"});
         }
-        scoreParContainer.style.background = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color;
-        document.getElementById(scoreParContainerId).appendChild(playerLevelPar);
-            playerLevelPar.innerHTML = playerPar;
-            playerLevelPar.setAttribute('class','playerPar');
-        document.getElementById(scoreParContainerId).appendChild(holeScoreRow);
-            holeScoreRow.setAttribute('id', holeScoreRowId);
-            holeScoreRow.setAttribute('class', 'holeScoreRow');
-            holeScoreRow.setAttribute('onkeyup','updateOut(\"' + thisPlayer + '\",\"' + thisPlayerOut + '\")');
+        $("#" + scoreParContainerId).css("background-color",teeColor);
+       // scoreParContainer.style.background = testCourse.course.holes[k].tee_boxes[players[numPlayers - 1].level].tee_hex_color;
+        $("#" + scoreParContainerId).append(playerLevelPar).append(holeScoreRow);
+        $("#" + holeScoreRow).attr("onkeyup","update()");
         if (teeType == 'men') {
-            console.log(teeType);
-            holeScoreRow.style.color = 'black';
-            holeScoreRow.style.borderLeft = 'solid 1px black';
+            $("#" + holeScoreRowId).css({"color": "black","border": "solid 2px white"});
         } else {
-            holeScoreRow.style.color = 'white';
-            holeScoreRow.style.borderLeft = 'solid 1px white';
+            $("#" + holeScoreRowId).css({"color": "ghostWhite","border": "solid 2px black"});
         }
-
-
     }
-    document.getElementById('playerName').value = '';
-    document.getElementById('teeDrop').innerHTML = '';
-    document.getElementById('handicap').value = '';
+    $("#playerName").val('');
+    $("#teeDrop").html('');
+    $("#handicap").val('');
 }
 
 function updateOut(player,row) {
@@ -377,16 +351,16 @@ function courseStats() {
     };
 };
 
-function getMyInfo(value) {
-    xhttpWeather = new XMLHttpRequest();
-    xhttpWeather.onreadystatechange = function() {
-        if (xhttpWeather.readyState == 4 && xhttpWeather.status == 200) {
-            weatherObject = JSON.parse(xhttpWeather.responseText);
-            var windSpeed = Math.ceil(weatherObject.wind.speed);
+
+function getMyInfo() {
+    var zipCode = $("#zipCode").val();
+    $.ajax('http://api.openweathermap.org/data/2.5/weather', {
+        success: function(response) {
+            var windSpeed = Math.ceil(response.wind.speed);
             clearWeather();
-            $("#cityName").append(weatherObject.name);
-            var temperature = weatherObject.main.temp;
-            $("#humidity").append(weatherObject.main.humidity);
+            $("#cityName").append(response.name);
+            var temperature = response.main.temp;
+            $("#humidity").append(response.main.humidity);
             $("#temp").append(temperature.toFixed(0));
             $("#temp img").first().attr("src","../src/images/svg/farenheit.svg");
             $("#wind").append(windSpeed);
@@ -397,40 +371,79 @@ function getMyInfo(value) {
             } else if (windSpeed > 18) {
                 $("#wind img").attr('src','../src/images/svg/weather-1.svg')
             }
-            $("#icon img").first().attr("src", weatherIcon + weatherObject.weather[0].icon + ".svg");
-            $("#weatherDesc").html(toCapitalize(weatherObject.weather[0].description));
+            $("#icon img").first().attr("src", weatherIcon + response.weather[0].icon + ".svg");
+            $("#weatherDesc").html(toCapitalize(response.weather[0].description));
+        },
+        data: {"zip": testCourse.course.zip_code.substr(0,5) ,"appid": "a4e12bc54b22227bd03bb03c867242d7","units": "imperial"},
+        error: function (request,errorType,errorMessage){
+            $("#cityName").append(errorMessage);
+        },
+        timeout: 3000,
+        beforeSend: function(){
+            $("#slideWeather").css({"background-color": "red","color": "black"})
+        },
+        complete: function(){
+            $("#slideWeather").css({"background-color": "transparent", "color": "ghostWhite"})
         }
+    });
+}
 
-    };
-    xhttpWeather.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip="+ value + ",us&appid=a4e12bc54b22227bd03bb03c867242d7&units=imperial", true);
-    xhttpWeather.send();
-};
 
 function clearWeather() {
     "use strict";
-    $("#cityName").html("");
-    $("#temp").html("");
-    //$("#wind").html("");
-    $("#icon img").first().attr('src','');
-};
+    $("#weatherContainer > div").not('#icon').html('');
+    $('#temp img').append('img src="../src/images/svg/farenheit.svg"');
+    $("#icon img").attr('src','');
+}
 
 function newZip () {
     "use strict";
     var thisZip = $("#zipCode").val();
     getMyInfo(thisZip);
 };
-//http://api.openweathermap.org/data/2.5/weather?q=London&mode=xml&units=imperial
-//api.openweathermap.org/data/2.5/weather?lat=35&lon=139
 /*
+ //weather API Call
+ var xhttpWeather;
+ var weatherObject = {};
+ var weatherIcon = "../src/images/svg/";
+ $(document).ready(function () {
+ $("#slideWeather").on('click',function() {
+ "use strict";
+ $("#weatherContainer").slideToggle('fast',"swing");
+ });
+ });
 
- Clear Sky 01d
- Few Clouds 02d
- Scattered Clouds 03d
- Broken Clouds 04d
- Shower Rain 09d
- Rain 10d
- Thunderstorm 11d
- Snow 13d
- Mist 50d
+ function getMyInfo() {
+ var zipCode = $("#zipCode").val();
+ $.ajax('http://api.openweathermap.org/data/2.5/weather', {
+ success: function(response) {
+ clearWeather();
+ $("#cityName").append("<h1>" + response.name + "</h1>");
+ $("#temp").append("<span>" + Math.ceil(response.main.temp) + "</span>");
+ $("#temp img").attr("src","../src/images/svg/farenheit.svg");
+ $("#wind").html("<span>" + response.wind.speed + "<span>");
+ $("#cityName").append("<h4>" + response.weather[0].description + "</h4>");
+ $("#icon img").first().attr("src", weatherIcon + response.weather[0].icon + ".svg");
+ },
+ data: {"zip": zipCode,"appid": "a4e12bc54b22227bd03bb03c867242d7","units": "imperial"},
+ error: function (request,errorType,errorMessage){
+ $("#cityName").append(errorMessage);
+ },
+ timeout: 3000,
+ beforeSend: function(){
+ $("#slideWeather").css({"background-color": "red","color": "black"})
+ },
+ complete: function(){
+ $("#slideWeather").css({"background-color": "rgba(0,0,0,0.80)", "color": "ghostWhite"})
+ }
+ });
+ }
 
+
+ function clearWeather() {
+ "use strict";
+ $("#weatherContainer > div").not('#icon').html('');
+ $('#temp img').append('img src="../src/images/svg/farenheit.svg"');
+ $("#icon img").attr('src','');
+ }
  */

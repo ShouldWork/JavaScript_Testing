@@ -149,6 +149,7 @@ body {
     border: 2px solid rgba(255,255,255,0.60);
     box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.30);
     z-index: 3;
+    cursor: pointer;
 }
 
 #banner {
@@ -286,6 +287,10 @@ body {
     font-size: 40px;
     transition: all 1s ease-out;
     opacity: 1;
+}
+
+.is-loading {
+    z-index: 1000;
 }
 /*---Footer---*/
 
