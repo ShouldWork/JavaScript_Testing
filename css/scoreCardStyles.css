@@ -83,6 +83,7 @@ body {
     border: solid 2px white;
     text-align: center;
     border-radius: 10px;
+    transition: all .2s ease-in;
 }
 .outCell {
     height: 30px;
@@ -113,6 +114,7 @@ body {
     display: flex;
     justify-content: center;
     overflow: auto;
+
 }
 #scoreCard {
     position: relative;
@@ -130,6 +132,11 @@ body {
     content: 'Out';
     line-height: 30px;
     text-align: center;
+}
+
+#totalColumn {
+    background-color: rgba(0,0,0,0.60);
+    border-radius: 10px;
 }
 #map {
     height: 100%;
